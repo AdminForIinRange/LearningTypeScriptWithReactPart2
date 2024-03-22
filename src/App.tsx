@@ -6,7 +6,7 @@ export default function App() {
   return (
     <div>
       
-      <Greet name={"hi"} />
+      <Greet name={"hi"} messageCount={10} isLoggedin={false} />
     </div>
   )
 }
