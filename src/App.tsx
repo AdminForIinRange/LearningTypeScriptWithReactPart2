@@ -1,24 +1,33 @@
-import { Box, HStack, Text} from '@chakra-ui/react'
-import React from 'react'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Navigate,
+  Route,
+  RouterProvider,
+  useNavigate,
+} from "react-router-dom";
 
-export default function App() {
-  return (
-   
-//just an exmaple, please recreate this, rember kjust create one thing at a time, but the software side first plase and maybe rediegin the thingo a bit more lol
-
-    <Box w={"500px"} h={"70px"} rounded={"xl"} boxShadow={"md"}>
-<HStack w={"100%"} h={"100% "} justify={"center"} fontWeight={"500"} fontSize={"20px"}>
-  <Text>
-  Create you goal
-  </Text>
-
-  </HStack>    
-    </Box>
+// layouts and pages
+import RootLayout from "./layouts/RootLayout.jsx";
+import Home from "./pages/Home/Home.tsx";
+import Goals from "./pages/Goals/Goals.tsx";
 
 
 
-
-
-
+// router and routes
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route path="/" element={<Home />} />
+      <Route path="Goals" element={<Goals />} />
+    </Route>
   )
+);
+
+function App() {
+
+
+  return <RouterProvider router={router} />;
 }
+
+export default App;
