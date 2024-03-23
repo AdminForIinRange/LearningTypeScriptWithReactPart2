@@ -4,6 +4,9 @@ import App from "./App.tsx";
 import "./styles/index.css";
 
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { store } from "./store.ts";
+
+import { Provider } from "react-redux";
 
 const theme = extendTheme({
   styles: {
@@ -23,7 +26,9 @@ const theme = extendTheme({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
+    <Provider store={store}>
       <App />
+      </Provider>
     </React.StrictMode>
   </ChakraProvider>
 );

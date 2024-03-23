@@ -22,9 +22,10 @@ import {
   import onClose from "../../../global/index.ts"
 
 
+  import { useDispatch, useSelector } from "react-redux";
   
 const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
-  
+    const dispatch = useDispatch();
     const [goalDescription, setGoalDescription]: [string, Dispatch<SetStateAction<string>>] = useState("");
     const [timeEstimate, setTimeEstimate]: [string, Dispatch<SetStateAction<string>>] = useState("");
   
