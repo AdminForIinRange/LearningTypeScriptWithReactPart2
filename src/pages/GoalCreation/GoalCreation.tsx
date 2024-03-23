@@ -33,11 +33,12 @@ const GoalCreation: React.FC = () => {
         </Text>
 
         <VStack
+        
           justify={"center"}
           w={["90%", "90%", "60%", "50%"]}
           align={"start"}
-          gap={"25px"}
-          mt={"15px"}
+          gap={"40px"}
+          mt={"45px"}
         >
           {Navbox.map(({ value, title }, index) => (
             <Button
@@ -49,15 +50,18 @@ const GoalCreation: React.FC = () => {
                 onOpen();
               }}
               h={"65px"}
-              boxShadow={"0 5px 10px gray"}
-              rounded={"xl"}
-              transition="transform, 0.3s ease-in-out"
-              _hover={{
-                transform: "scale(1.03)",
-                boxShadow: "0 5px 20px gray",
-              }}
+
+   
+  
             >
               <HStack
+                  transition="transform, 0.3s ease-in-out"
+                _hover={{
+                  transform: "scale(1.03)",
+                  boxShadow: "0 5px 20px gray",
+                }}
+              rounded={"xl"}
+                 boxShadow={"0 1px 8px gray"}
                 w={"100%"}
                 h={"100%"}
                 justify={"left"}
@@ -78,6 +82,7 @@ const GoalCreation: React.FC = () => {
       </VStack>
 
       <GoalModalHandler
+      setModalValue={setModalValue}
         modalValue={modalValue}
         blockScrollOnMount={false}
         isOpen={isOpen}

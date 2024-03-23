@@ -16,16 +16,31 @@ import {
   Button,
   FormLabel,
 } from "@chakra-ui/react";
-import React from "react";
- import CreateYourGoalModalProps from "../../global/index.ts";
+import React, { useState } from "react";
+ import GoalModalHandlerProps from "../../global/index.ts";
+ import { FaArrowRightLong } from "react-icons/fa6";
 
-const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
+const GoalModalHandler: React.FC<GoalModalHandlerModalProps> = ({
   modalValue,
+  setModalValue,
   isOpen,
   onClose,
   blockScrollOnMount,
 }) => {
+  const [goalTitle, setTGoalTitle] : string = useState("");
+  const [goalDescription, setGoalDescription]  : string = useState("");
+  const [timeEstimate, setTimeEstimate] : string = useState("");
+
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+
+  }
+
   const modalValueDisplay = () => {
+
+
     if (modalValue === "Goal") {
       return <> <ModalHeader><HStack  w={"100%"} h={"100%"} justify={'center'}>   <Text  fontFamily={"Raleway"} fontSize={"35px"} fontWeight={"700"} > Define Your Goal 
         </Text>
@@ -36,7 +51,7 @@ const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
 
       <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
 
-        <form >
+        <form  onSubmit={handleSubmit}>
        
         <FormLabel fontWeight={400} >
         Describe your goal in a few word:
@@ -46,7 +61,7 @@ const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
   
         _focus={{  borderBottom: "2px solid #EBEBEB"  }}
         px={0}
-       w={"70%"}
+       w={"100%"}
                     fontSize={"16px"}
                     mb={"50px"}
                     borderRadius={"0%"}
@@ -66,7 +81,7 @@ const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
   
         _focus={{  borderBottom: "2px solid #EBEBEB"  }}
         px={0}
-       w={"70%"}
+       w={"100%"}
                     fontSize={"16px"}
                     mb={"50px"}
                     borderRadius={"0%"}
@@ -81,17 +96,42 @@ const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
 
 
 
-<FormLabel fontWeight={400} >
-        Describe your goal in a few word:
+<FormLabel fontWeight={500}    mb={"25px"} >
+     Estimated time for achieving this goal?
         </FormLabel>
 
-        <HStack>
+        <HStack w={["60%","50%","30%","30%",]} justify={"center"} >
           
+       
+
+          <Input
+          w={"100%"}
+ placeholder="Select Date and Time"
+ size="md"
+ type="datetime-local"
+ mb={"50px"}
+/>
+
+
+   
         </HStack>
+
+        <HStack w={"100%"} justify={"right"} >
+<Button  type="submit"  onClick={()=>{
+      console.log("im closed")
+  setModalValue("Monthly")
+}} w={"100px"} rightIcon={<FaArrowRightLong />} color={"blue.400"}>
+        Next
+        </Button>
+</HStack>
 
 
 
         </form>
+
+
+
+      
       </VStack>
         
         
@@ -108,9 +148,9 @@ const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
 
   return (
     <>
-      <Modal blockScrollOnMount={false} isOpen={isOpen} size={"4xl"} onClose={onClose}>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} size={"3xl"}   onClose={onClose}>
         <ModalOverlay />
-        <ModalContent  h={"500px"}>
+        <ModalContent boxShadow={"xl"} >
           <ModalCloseButton />
 
           {modalValueDisplay()}
@@ -120,4 +160,4 @@ const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
   );
 };
 
-export default CreateYourGoalModal;
+export default GoalModalHandler;
