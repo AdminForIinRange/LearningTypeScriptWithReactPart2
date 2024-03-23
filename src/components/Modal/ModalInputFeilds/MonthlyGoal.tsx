@@ -3,23 +3,18 @@ import {
     VStack,
     Text,
     
-    Box,
-    Spacer,
-    useDisclosure,
-    Modal,
-    ModalOverlay,
-    ModalContent,
+ 
     Input,
     ModalHeader,
-    ModalCloseButton,
+  
     ModalBody,
     Button,
     FormLabel,
   } from "@chakra-ui/react";
-import onClose from "../../../global/index.ts"
+import {onClose} from "../../../global/index.ts"
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
   
 const MonthlyGoal : React.FC<onClose> = ({onClose}) => {

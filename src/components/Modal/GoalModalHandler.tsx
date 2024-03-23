@@ -1,30 +1,23 @@
 import {
-  HStack,
-  VStack,
-  Text,
-  Box,
-  Spacer,
-  useDisclosure,
+
   Modal,
   ModalOverlay,
   ModalContent,
-  Input,
-  ModalHeader,
+
+
   ModalCloseButton,
-  ModalBody,
-  Button,
-  FormLabel,
+
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import GoalModalHandlerProps from "../../global/index.ts";
-import { FaArrowRightLong } from "react-icons/fa6";
+import React from "react";
+import { GoalModalHandlerProps } from "../../global/index.ts";
+
 import DefineYourGoal from "./ModalInputFeilds/DefineYourGoal.tsx";
 
 import MonthlyGoal from "./ModalInputFeilds/MonthlyGoal.tsx";
 import WeeklyGoal from "./ModalInputFeilds/WeeklyGoal.tsx";
 import DaliyGoal from "./ModalInputFeilds/DaliyGoal.tsx";
 
-const GoalModalHandler: React.FC<GoalModalHandlerModalProps> = ({
+const GoalModalHandler: React.FC<GoalModalHandlerProps> = ({
   modalValue,
   setModalValue,
   isOpen,

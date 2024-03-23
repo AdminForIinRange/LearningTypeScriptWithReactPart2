@@ -1,10 +1,10 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Navigate,
+
   Route,
   RouterProvider,
-  useNavigate,
+
 } from "react-router-dom";
 
 // layouts and pages

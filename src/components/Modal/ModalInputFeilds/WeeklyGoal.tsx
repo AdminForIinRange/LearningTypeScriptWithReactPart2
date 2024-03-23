@@ -2,16 +2,10 @@ import {
     HStack,
     VStack,
     Text,
-    
-    Box,
-    Spacer,
-    useDisclosure,
-    Modal,
-    ModalOverlay,
-    ModalContent,
+ 
     Input,
     ModalHeader,
-    ModalCloseButton,
+  
     ModalBody,
     Button,
     FormLabel,
@@ -21,7 +15,7 @@ import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const WeeklyGoal : React.FC<onClose> = ({onClose}) => {
     const dispatch = useDispatch();
 

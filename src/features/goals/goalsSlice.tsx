@@ -1,11 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+// Define TypeScript types
+interface Goal {
+  MonthlyGoalOne: string;
+  MonthlyGoalTwo: string;
+  MonthlyGoalThree: string;
+  WeeklyGoalOne: string;
+  WeeklyGoalTwo: string;
+  WeeklyGoalThree: string;
+  DailyGoalOne: string;
+  DailyGoalTwo: string;
+  DailyGoalThree: string;
+  goalDescription: string;
+  timeEstimate: string;
+}
 
+interface GoalsState {
+  Goals: Goal[];
+}
 
-
+interface UpdateGoalPayload {
+  index: number;
+  field: keyof Goal;
+  value: string;
+}
 
 // Define initial state
-const initialState = {
+const initialState: GoalsState = {
   Goals: [{
     MonthlyGoalOne: "",
     MonthlyGoalTwo: "",
@@ -18,10 +39,8 @@ const initialState = {
     DailyGoalThree: "",
     goalDescription: "",
     timeEstimate: ""
-  }],
-  GoalsAllFilled: 
+  }]
 };
-
 
 // Define slice
 const goalsSlice = createSlice({
@@ -29,7 +48,7 @@ const goalsSlice = createSlice({
   initialState,
   reducers: {
     // Reducer to update a specific goal
-    updateGoal: (state, action) => {
+    updateGoal: (state, action: PayloadAction<UpdateGoalPayload>) => {
       const { index, field, value } = action.payload;
       state.Goals[index][field] = value;
     },
