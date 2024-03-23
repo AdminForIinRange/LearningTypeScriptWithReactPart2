@@ -18,7 +18,11 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
 import modalValueState from "../../global/index.ts";
 import ModalData from "../../components/Modal/ModalData.json";
+import { useSelector } from "react-redux";
+
 const GoalCreation: React.FC = () => {
+
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [modalValue, setModalValue] = useState<modalValueState>("");
@@ -79,6 +83,10 @@ const GoalCreation: React.FC = () => {
             </Button>
           ))}
         </VStack>
+
+        <Button>
+          Add more
+        </Button>
       </VStack>
 
       <GoalModalHandler

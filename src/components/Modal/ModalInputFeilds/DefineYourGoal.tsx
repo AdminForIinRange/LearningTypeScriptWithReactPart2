@@ -23,14 +23,21 @@ import {
 
 
   import { useDispatch, useSelector } from "react-redux";
+import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
   
 const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
     const dispatch = useDispatch();
     const [goalDescription, setGoalDescription]: [string, Dispatch<SetStateAction<string>>] = useState("");
     const [timeEstimate, setTimeEstimate]: [string, Dispatch<SetStateAction<string>>] = useState("");
   
+
+
+
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    dispatch(updateGoal({ index: 0, field: 'goalDescription', value: goalDescription }));
+    dispatch(updateGoal({ index: 0, field: 'timeEstimate', value: timeEstimate }));
     console.log(goalDescription, timeEstimate);
   };
 

@@ -19,9 +19,13 @@ import {
 import onClose from "../../../global/index.ts"
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
 
+import { useDispatch, useSelector } from "react-redux";
 const WeeklyGoal : React.FC<onClose> = ({onClose}) => {
- 
+    const dispatch = useDispatch();
+
+
     const [WeeklyGoalOne, setWeeklyGoalOne]: [string, Dispatch<SetStateAction<string>>] = useState("");
    
     const [WeeklyGoalTwo, setWeeklyGoalTwo]: [string, Dispatch<SetStateAction<string>>] = useState("");
@@ -32,7 +36,9 @@ const WeeklyGoal : React.FC<onClose> = ({onClose}) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(WeeklyGoalOne, WeeklyGoalTwo, WeeklyGoalThree);
+       dispatch(updateGoal({ index: 0, field: 'WeeklyGoalOne', value: WeeklyGoalOne }));
+    dispatch(updateGoal({ index: 0, field: 'WeeklyGoalTwo', value: WeeklyGoalTwo }));
+    dispatch(updateGoal({ index: 0, field: 'WeeklyGoalThree', value: WeeklyGoalThree }));
       };
     
  

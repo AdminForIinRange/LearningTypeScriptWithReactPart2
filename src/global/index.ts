@@ -26,3 +26,18 @@
  }
  
 
+
+
+ export interface Goal {
+    MonthlyGoalOne: string;
+    MonthlyGoalTwo: string;
+    MonthlyGoalThree: string;
+    WeeklyGoalOne: string;
+    WeeklyGoalTwo: string;
+    WeeklyGoalThree: string;
+    DailyGoalOne: string;
+    DailyGoalTwo: string;
+    DailyGoalThree: string;
+    goalDescription: string;
+    timeEstimate: string;
+  }
