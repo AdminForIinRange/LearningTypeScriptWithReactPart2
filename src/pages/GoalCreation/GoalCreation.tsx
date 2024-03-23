@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
-import modalValueState from "../../global/index.ts";
+import {modalValue} from "../../global/index.ts";
 import ModalData from "../../components/Modal/ModalData.json";
 
 
@@ -20,7 +20,7 @@ const GoalCreation: React.FC = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [modalValue, setModalValue] = useState<modalValueState>("");
+  const [modalValue, setModalValue] = useState<modalValue>("")
 
   const { Navbox } = ModalData[0];
 

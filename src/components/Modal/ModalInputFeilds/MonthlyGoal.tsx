@@ -12,7 +12,7 @@ import {
     FormLabel,
   } from "@chakra-ui/react";
 import {onClose} from "../../../global/index.ts"
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { updateGoal } from "../../../features/goals/goalsSlice.tsx";

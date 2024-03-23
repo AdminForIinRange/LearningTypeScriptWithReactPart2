@@ -11,13 +11,14 @@ import {
     FormLabel,
   } from "@chakra-ui/react";
 import {onClose} from "../../../global/index.ts"
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
 import { useDispatch } from "react-redux";
 const DailyGoal : React.FC<onClose> = ({onClose}) => {
     const dispatch = useDispatch();
     const [DailyGoalOne, setDailyGoalOne]: [string, Dispatch<SetStateAction<string>>] = useState("");
+
    
     const [DailyGoalTwo, setDailyGoalTwo]: [string, Dispatch<SetStateAction<string>>] = useState("");
     const [DailyGoalThree, setDailyGoalThree]: [string, Dispatch<SetStateAction<string>>] = useState("");

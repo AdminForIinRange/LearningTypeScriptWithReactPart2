@@ -18,11 +18,11 @@
   
  
  export interface  GoalModalHandlerProps  {
-   modalValue: modalValue
+   modalValue: "Goal" | "Monthly" | "Weekly" | "Daily";
    blockScrollOnMount: boolean;
    isOpen: boolean;
    setModalValue: (value: modalValue) => void;
-   onClose: onClose
+   onClose: () => void;
  }
  
 

@@ -11,8 +11,7 @@ import {
     Button,
     FormLabel,
   } from "@chakra-ui/react";
-  import React, { useState } from "react";
-
+  import { Dispatch, SetStateAction, useState } from "react";
   import { FaCheck } from "react-icons/fa";
   import {onClose} from "../../../global/index.ts"
 
