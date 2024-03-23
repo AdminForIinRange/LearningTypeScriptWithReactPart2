@@ -35,7 +35,7 @@ export default function Navbar() {
 
       <Spacer />
       <HStack fontWeight={500}>
-        {isSmallScreen ? (
+        {isSmallScreen ? ( //custom comp and pass as chlidren tsx
           <Menu>
             <MenuButton as={Button} color={"black"} variant="outline">
               <HamburgerIcon />
@@ -57,8 +57,8 @@ export default function Navbar() {
               </MenuItem>
             </MenuList>
           </Menu>
-        ) : (
-          <ButtonGroup gap={"25px"}>
+        ) : ( //custom comp and pass as chlidren as well tsx
+          <ButtonGroup gap={"25px"}> 
             <Button variant={"link"} color={"balck"} leftIcon={<FaPen />}>
               <Text color={"BLACK"}>Create</Text>
             </Button>
