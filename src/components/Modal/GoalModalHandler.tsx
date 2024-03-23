@@ -14,37 +14,34 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React from "react";
+ import CreateYourGoalModalProps from "../../global/index.ts";
 
-
-interface CreateYourGoalModalProps {
-  modalValue: string
-  blockScrollOnMount: boolean
-  isOpen : boolean
-  onClose : () => void
-
-
-}
-
-
-
-
-
-
-
-
-const CreateYourGoalModal  : React.FC<CreateYourGoalModalProps> = ({ modalValue, isOpen, onClose, blockScrollOnMount}) => {
-
-
+const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
+  modalValue,
+  isOpen,
+  onClose,
+  blockScrollOnMount,
+}) => {
+  const modalValueDisplay = () => {
+    if (modalValue === "Goal") {
+      return <> <ModalHeader>Goal</ModalHeader> </>;
+    } else if (modalValue === "Monthly") {
+      return<> <ModalHeader>Goal</ModalHeader> </>;
+    } else if (modalValue === "Weekly") {
+      return <> <ModalHeader>Goal</ModalHeader> </>;
+    } else if (modalValue === "Daily") {
+      return <> <ModalHeader>Goal</ModalHeader> </>;
+    }
+  };
 
   return (
     <>
-     <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose} >
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-        <ModalCloseButton />
-        
-        <ModalHeader>Modal Title</ModalHeader>
-         
+          <ModalCloseButton />
+
+          {modalValueDisplay()}
         </ModalContent>
       </Modal>
     </>
