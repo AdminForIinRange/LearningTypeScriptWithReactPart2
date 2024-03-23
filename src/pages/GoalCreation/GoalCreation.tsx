@@ -8,20 +8,20 @@ import {
 
   Button,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
-import {modalValue} from "../../global/index.ts";
+
 import ModalData from "../../components/Modal/ModalData.json";
+
 
 
 const GoalCreation: React.FC = () => {
 
 
+
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const [modalValue, setModalValue] = useState<modalValue>("")
-
+  const [modalValue, setModalValue]: [string, Dispatch<SetStateAction<string>>] = useState<string>("");
   const { Navbox } = ModalData[0];
 
   return (
@@ -85,7 +85,7 @@ const GoalCreation: React.FC = () => {
       </VStack>
 
       <GoalModalHandler
-      setModalValue={setModalValue}
+     
         modalValue={modalValue}
         blockScrollOnMount={false}
         isOpen={isOpen}

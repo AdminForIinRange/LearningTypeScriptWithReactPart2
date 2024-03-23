@@ -10,7 +10,7 @@ import {
     Button,
     FormLabel,
   } from "@chakra-ui/react";
-import onClose from "../../../global/index.ts"
+import {onClose} from "../../../global/index.ts"
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { updateGoal } from "../../../features/goals/goalsSlice.tsx";

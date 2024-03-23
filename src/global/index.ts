@@ -6,22 +6,27 @@
  
  
  export interface  modalValue  {
-    modalValue: "Goal" | "Monthly" | "weekly" | "Daily";
+    modalValue: "Goal" | "Monthly" | "Weekly" | "Daily";
+    setModalVale: (modalValue: "Goal" | "Monthly" | "Weekly" | "Daily") => void;
 
   }
   
+
+
 
   export interface  onClose  {
   
     onClose: () => void;
   }
   
+
+
  
  export interface  GoalModalHandlerProps  {
-   modalValue: "Goal" | "Monthly" | "Weekly" | "Daily";
+    modalValue: string | undefined;
    blockScrollOnMount: boolean;
    isOpen: boolean;
-   setModalValue: (value: modalValue) => void;
+  
    onClose: () => void;
  }
  

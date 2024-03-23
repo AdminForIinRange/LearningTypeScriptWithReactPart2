@@ -4,15 +4,15 @@ import {
   ModalContent,
   ModalCloseButton,
 } from "@chakra-ui/react";
-;
+
 import { GoalModalHandlerProps } from "../../global/index.ts";
 import DefineYourGoal from "./ModalInputFeilds/DefineYourGoal.tsx";
 import MonthlyGoal from "./ModalInputFeilds/MonthlyGoal.tsx";
 import WeeklyGoal from "./ModalInputFeilds/WeeklyGoal.tsx";
 import DaliyGoal from "./ModalInputFeilds/DaliyGoal.tsx";
 
-const GoalModalHandler = (props: GoalModalHandlerProps) => {
-  const { modalValue, isOpen, onClose, blockScrollOnMount } = props;
+const GoalModalHandler = ({modalValue,  blockScrollOnMount, isOpen, onClose}: GoalModalHandlerProps) => {
+
 
   const modalValueDisplay = () => {
     switch (modalValue) {

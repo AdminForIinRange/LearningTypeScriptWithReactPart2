@@ -54,9 +54,7 @@ const goalsSlice = createSlice({
     },
     // Add more reducers here if needed
   },
-  extraReducers: (builder) => {
-    // Define extra reducers here
-  }
+
 });
 
 // Export actions
