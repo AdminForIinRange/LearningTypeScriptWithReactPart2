@@ -26,11 +26,11 @@ const CreateYourGoalModal: React.FC<CreateYourGoalModalProps> = ({
     if (modalValue === "Goal") {
       return <> <ModalHeader>Goal</ModalHeader> </>;
     } else if (modalValue === "Monthly") {
-      return<> <ModalHeader>Goal</ModalHeader> </>;
+      return<> <ModalHeader>Monthly</ModalHeader> </>;
     } else if (modalValue === "Weekly") {
-      return <> <ModalHeader>Goal</ModalHeader> </>;
+      return <> <ModalHeader>Weekly</ModalHeader> </>;
     } else if (modalValue === "Daily") {
-      return <> <ModalHeader>Goal</ModalHeader> </>;
+      return <> <ModalHeader>Daily</ModalHeader> </>;
     }
   };
 

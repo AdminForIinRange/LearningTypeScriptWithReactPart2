@@ -19,32 +19,11 @@ import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
 import modalValueState from "../../global/index.ts";
 import ModalData from "../../components/Modal/ModalData.json";
 const GoalCreation: React.FC = () => {
-
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [modalValue, setModalValue] = useState<modalValueState>("");
 
-
-
-  const modalObj: { value: string; title: string }[] = [
-    {
-      value: "Goal",
-      title: "Create Your Goal",
-    },
-    {
-      value: "Monthly",
-      title: "Monthly targets for your goals",
-    },
-    {
-      value: "Weekly",
-      title: "Weekly targets for your goal",
-    },
-    {
-      value: "Daily",
-      title: "Daily targets for your goal",
-    },
-  ];
+  const { Navbox } = ModalData[0];
 
   return (
     <>
@@ -60,7 +39,7 @@ const GoalCreation: React.FC = () => {
           gap={"25px"}
           mt={"15px"}
         >
-          {modalObj.map(({ value, title }, index) => (
+          {Navbox.map(({ value, title }, index) => (
             <Button
               key={index}
               variant={"none"}
