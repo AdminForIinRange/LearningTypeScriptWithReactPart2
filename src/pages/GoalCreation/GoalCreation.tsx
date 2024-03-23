@@ -1,9 +1,19 @@
-import { HStack, VStack, Text, Box, Spacer } from "@chakra-ui/react";
-import React from "react";
+import { HStack, VStack, Text, Box, Spacer, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Button } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const GoalCreation = () => {
+
+
+const GoalCreation : React.FC = () => {
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+const [modalVale, setModalVale] = useState<string>()
+
   return (
+
+
+    <>
     <VStack p={2} px={3}>
       <Text fontFamily={"Raleway"} fontSize={"65px"} fontWeight={"700"}>
         Lets Get Started
@@ -23,9 +33,13 @@ const GoalCreation = () => {
           }}
         >
           <HStack w={"100%"} h={"100%"} justify={"left"} align={"center"} px={5}>
-            <Text fontSize={"20px"} textAlign={"left"} >
+            
+            <Button variant={"none"}    onClick={()=>{
+              setModalVale("Goal")
+              onOpen()
+            }} fontSize={"20px"} textAlign={"left"} >
               Create Your Goal
-            </Text>
+            </Button>
             <Spacer/>
             <Text fontSize={"20px"} textAlign={"left"} >
             <FaArrowRightLong />
@@ -44,9 +58,9 @@ const GoalCreation = () => {
           }}
         >
           <HStack w={"100%"} h={"100%"} justify={"left"} align={"center"} px={5} >
-            <Text fontSize={"20px"} textAlign={"left"} >
+          <Button variant={"none"} fontSize={"20px"} textAlign={"left"} >
             Monthly targets for your goals
-            </Text>
+            </Button>
             <Spacer/>
             <Text fontSize={"20px"} textAlign={"left"} >
             <FaArrowRightLong />
@@ -65,9 +79,9 @@ const GoalCreation = () => {
           }}
         >
           <HStack w={"100%"} h={"100%"} justify={"left"} align={"center"} px={5}>
-            <Text fontSize={"20px"} textAlign={"left"} >
+          <Button variant={"none"} fontSize={"20px"} textAlign={"left"} >
          weekly targets for your gaol
-            </Text>
+            </Button>
             <Spacer/>
             <Text fontSize={"20px"} textAlign={"left"} >
             <FaArrowRightLong />
@@ -86,9 +100,9 @@ const GoalCreation = () => {
           }}
         >
           <HStack w={"100%"} h={"100%"} justify={"left"} align={"center"} px={5}>
-            <Text fontSize={"20px"} textAlign={"left"} >
+          <Button variant={"none"} fontSize={"20px"} textAlign={"left"} >
         daily targets for your gaol
-            </Text>
+            </Button>
             <Spacer/>
             <Text fontSize={"20px"} textAlign={"left"} >
             <FaArrowRightLong />
@@ -97,6 +111,24 @@ const GoalCreation = () => {
         </Box>
       </VStack>
     </VStack>
+
+    <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text fontWeight='bold' mb='1rem'>
+              You can scroll the content behind the modal
+            </Text>
+          
+          </ModalBody>
+
+        
+        </ModalContent>
+      </Modal>
+
+    </>
   );
 };
 

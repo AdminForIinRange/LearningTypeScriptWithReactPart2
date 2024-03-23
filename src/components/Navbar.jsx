@@ -31,8 +31,10 @@ export default function Navbar() {
       boxShadow={"xl"}
       px={20}
     >
-      <Avatar fontSize={"20px"} name="" />
-
+      <Avatar size={"sm"} name="" />
+<Text fontWeight={500}>
+  Anjesh B
+</Text>
       <Spacer />
       <HStack fontWeight={500}>
         {isSmallScreen ? ( //custom comp and pass as chlidren tsx
