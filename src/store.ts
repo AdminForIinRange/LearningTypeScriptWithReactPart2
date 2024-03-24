@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import goalsReducer from "./features/goals/goalsSlice.tsx";
 
-import counterReducer from "./features/counter/CounterSlice.tsx";
+import counterReducer from "./features/counter/CounterSlice.ts";
+
+
 
 export const store = configureStore({
   reducer: {
     goals: goalsReducer,
-    counter: counterReducer,
+    counter: counterReducer
   },
 });
 

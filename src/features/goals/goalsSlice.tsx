@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define TypeScript types
-interface Goal {
+interface Goal { 
   MonthlyGoalOne: string;
   MonthlyGoalTwo: string;
   MonthlyGoalThree: string;
@@ -41,6 +41,13 @@ const initialState: GoalsState = {
     timeEstimate: ""
   }]
 };
+
+
+
+//state shoud only hold state, it shoud not be able to mutate 
+
+
+
 
 // Define slice
 const goalsSlice = createSlice({
