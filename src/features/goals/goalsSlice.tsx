@@ -70,10 +70,29 @@ const goalsSlice = createSlice({
     TimeEstimate: (state, action) => {
       state.timeEstimate = action.payload;
     },
-  }
+
+    
+  },
+  extraReducers: (builder) => {
+    builder.addCase(
+      addGoals.fulfilled,
+      () => {
+      
+        console.log("Done");
+      }
+    );
+    builder.addCase(
+      addGoals.pending,
+      () => {
+       console.log("pending");
+      }
+    );
+
+  },
+
 });
 
-const GoalsCollectionRef = collection(db, "goals");
+const GoalsCollectionRef = collection(db, "Goals");
 
 export const addGoals = createAsyncThunk(
   "goals/addGoals",

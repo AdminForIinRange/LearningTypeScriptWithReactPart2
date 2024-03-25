@@ -87,15 +87,7 @@ const GoalCreation: React.FC = () => {
         <Button >
           {value}
         </Button>
-        <Button onClick={() => dispatch(add())}>
-          Add
-        </Button>
-        <Button  onClick={() => dispatch(take())}>
-          Take
-        </Button>
-        <Button  onClick={() => dispatch(incrementAsync(4))}>
-          4
-        </Button>
+       
       </VStack>
 
       <GoalModalHandler
