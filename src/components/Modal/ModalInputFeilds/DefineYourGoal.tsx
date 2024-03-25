@@ -18,7 +18,7 @@ import {
 
 
   import { useDispatch } from "react-redux";
-import { TimeEstimate,addGoals } from "../../../features/goals/goalsSlice.tsx";
+import { addGoals } from "../../../features/goals/goalsSlice.tsx";
 
 
 const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
@@ -35,7 +35,7 @@ const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
   
     dispatch(addGoals({ goalDescription: goalDescription }));
  // Dispatching setGoalDescription to update goalDescription in the store
-    dispatch(TimeEstimate(timeEstimate)); // Dispatching setTimeEstimate to update timeEstimate in the store
+ dispatch(addGoals({ timeEstimate: timeEstimate }));
   };
   return (
     <>

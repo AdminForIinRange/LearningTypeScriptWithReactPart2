@@ -17,7 +17,7 @@ import { FaCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 
 import { AppDispatch } from "../../../store.ts";
-import { DailyGoalOne, DailyGoalTwo, DailyGoalThree } from "../../../features/goals/goalsSlice.tsx";
+import {addGoals } from "../../../features/goals/goalsSlice.tsx";
 
 
 const DailyGoal : React.FC<onClose> = ({onClose}) => {
@@ -34,9 +34,9 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
     
-      dispatch(DailyGoalOne(dailyGoalOne));
-      dispatch(DailyGoalTwo(dailyGoalTwo)); // Dispatching setGoalDescription to update goalDescription in the store
-      dispatch(DailyGoalThree(dailyGoalThree));
+      dispatch(addGoals({ DailyGoalOne: dailyGoalOne }));
+      dispatch(addGoals({ DailyGoalTwo: dailyGoalTwo }));
+      dispatch(addGoals({ DailyGoalThree: dailyGoalThree }));
     
     };
  
