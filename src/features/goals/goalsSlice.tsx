@@ -1,7 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Define TypeScript types
-interface Goal { 
+interface initialStateInterface {
+  
+
   MonthlyGoalOne: string;
   MonthlyGoalTwo: string;
   MonthlyGoalThree: string;
@@ -15,19 +17,11 @@ interface Goal {
   timeEstimate: string;
 }
 
-interface GoalsState {
-  Goals: Goal[];
-}
 
-interface UpdateGoalPayload {
-  index: number;
-  field: keyof Goal;
-  value: string;
-}
 
 // Define initial state
-const initialState: GoalsState = {
-  Goals: [{
+const initialState: initialStateInterface = {
+
     MonthlyGoalOne: "",
     MonthlyGoalTwo: "",
     MonthlyGoalThree: "",
@@ -39,7 +33,7 @@ const initialState: GoalsState = {
     DailyGoalThree: "",
     goalDescription: "",
     timeEstimate: ""
-  }]
+
 };
 
 
@@ -54,18 +48,24 @@ const goalsSlice = createSlice({
   name: "goals",
   initialState,
   reducers: {
-    // Reducer to update a specific goal
-    updateGoal: (state, action: PayloadAction<UpdateGoalPayload>) => {
-      const { index, field, value } = action.payload;
-      state.Goals[index][field] = value;
-    },
-    // Add more reducers here if needed
+   
+
   },
 
 });
 
+
+export const incrementAsync = createAsyncThunk(
+  "counter/incrementAsync",
+  async (amount: number) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    return amount;
+  }
+);
+
+
 // Export actions
-export const { updateGoal } = goalsSlice.actions;
+export const {  } = goalsSlice.actions;
 
 // Export reducer
 export default goalsSlice.reducer;

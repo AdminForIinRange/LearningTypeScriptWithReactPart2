@@ -13,7 +13,7 @@ import {
 import {onClose} from "../../../global/index.ts"
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
-import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
+
 import { useDispatch } from "react-redux";
 const DailyGoal : React.FC<onClose> = ({onClose}) => {
     const dispatch = useDispatch();
