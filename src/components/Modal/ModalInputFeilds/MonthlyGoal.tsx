@@ -15,23 +15,25 @@ import {onClose} from "../../../global/index.ts"
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
-  
+import {MonthlyGoalOne,
+  MonthlyGoalTwo,
+  MonthlyGoalThree,  } from "../../../features/goals/goalsSlice.tsx";
+import { AppDispatch } from "../../../store.ts";
 const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
-    const dispatch = useDispatch();
-    const [MonthlyGoalOne, setMonthlyGoalOne]: [string, Dispatch<SetStateAction<string>>] = useState("");
+  const dispatch = useDispatch<AppDispatch>()
+    const [monthlyGoalOne, setMonthlyGoalOne]: [string, Dispatch<SetStateAction<string>>] = useState("");
    
-    const [MonthlyGoalTwo, setMonthlyGoalTwo]: [string, Dispatch<SetStateAction<string>>] = useState("");
-    const [MonthlyGoalThree, setMonthlyGoalThree]: [string, Dispatch<SetStateAction<string>>] = useState("");
+    const [monthlyGoalTwo, setMonthlyGoalTwo]: [string, Dispatch<SetStateAction<string>>] = useState("");
+    const [monthlyGoalThree, setMonthlyGoalThree]: [string, Dispatch<SetStateAction<string>>] = useState("");
    
 
 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(updateGoal({ index: 0, field: 'MonthlyGoalOne', value: MonthlyGoalOne }));
-    dispatch(updateGoal({ index: 0, field: 'MonthlyGoalTwo', value: MonthlyGoalTwo }));
-    dispatch(updateGoal({ index: 0, field: 'MonthlyGoalThree', value: MonthlyGoalThree }));
+        dispatch(MonthlyGoalOne(monthlyGoalOne));
+      dispatch(MonthlyGoalTwo(monthlyGoalTwo)); // Dispatching setGoalDescription to update goalDescription in the store
+      dispatch(MonthlyGoalThree(monthlyGoalThree));
       };
     
  
@@ -64,7 +66,7 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
                 </FormLabel>
 
                 <Input
-                value={MonthlyGoalOne}
+                value={monthlyGoalOne}
                 onChange={(e) => setMonthlyGoalOne(e.target.value)}
                   _focus={{ borderBottom: "2px solid #EBEBEB" }}
                  
@@ -85,7 +87,7 @@ Monthly Goal Two
                 </FormLabel>
 
                 <Input
-                value={MonthlyGoalTwo}
+                value={monthlyGoalTwo}
                 onChange={(e) => setMonthlyGoalTwo(e.target.value)}
                   _focus={{ borderBottom: "2px solid #EBEBEB" }}
                  
@@ -107,7 +109,7 @@ Monthly Goal Three
                 </FormLabel>
 
                 <Input
-                value={MonthlyGoalThree}
+                value={monthlyGoalThree}
                 onChange={(e) => setMonthlyGoalThree(e.target.value)}
                   _focus={{ borderBottom: "2px solid #EBEBEB" }}
                  
