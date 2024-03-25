@@ -13,12 +13,16 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
 
 import ModalData from "../../components/Modal/ModalData.json";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store.ts";
 
+import {add, take, amount} from "../../features/counter/counterSlice.tsx"
 
 
 const GoalCreation: React.FC = () => {
 
-
+  const value = useSelector((state: RootState) => state.counter.value)
+  const dispatch = useDispatch()
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalValue, setModalValue]: [string, Dispatch<SetStateAction<string>>] = useState<string>("");
@@ -78,9 +82,19 @@ const GoalCreation: React.FC = () => {
             </Button>
           ))}
         </VStack>
-
-        <Button>
-          Add more
+        
+        
+        <Button >
+          {value}
+        </Button>
+        <Button onClick={() => dispatch(add())}>
+          Add
+        </Button>
+        <Button  onClick={() => dispatch(take())}>
+          Take
+        </Button>
+        <Button  onClick={() => dispatch(amount(4))}>
+          4
         </Button>
       </VStack>
 
