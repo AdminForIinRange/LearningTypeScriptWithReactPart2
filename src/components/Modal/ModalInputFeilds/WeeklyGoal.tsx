@@ -12,9 +12,7 @@ import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import {
-  WeeklyGoalOne,
-  WeeklyGoalTwo,
-  WeeklyGoalThree,
+  addGoals
 } from "../../../features/goals/goalsSlice.tsx";
 
 import { AppDispatch } from "../../../store.ts";
@@ -39,9 +37,9 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    dispatch(WeeklyGoalOne(weeklyGoalOne));
-    dispatch(WeeklyGoalTwo(weeklyGoalTwo)); // Dispatching setGoalDescription to update goalDescription in the store
-    dispatch(WeeklyGoalThree(weeklyGoalThree));
+    dispatch(addGoals({ WeeklyGoalOne: weeklyGoalOne }));
+    dispatch(addGoals({ WeeklyGoalTwo: weeklyGoalTwo }));
+    dispatch(addGoals({ WeeklyGoalThree: weeklyGoalThree }));
   };
 
   return (
