@@ -14,13 +14,18 @@ import {
   import { Dispatch, SetStateAction, useState } from "react";
   import { FaCheck } from "react-icons/fa";
   import {onClose} from "../../../global/index.ts"
+  import { AppDispatch } from "../../../store.ts";
 
 
   import { useDispatch } from "react-redux";
-import { updateGoal } from "../../../features/goals/goalsSlice.tsx";
-  
+import { setGoalDescription, setTimeEstimate } from "../../../features/goals/goalsSlice.tsx";
+interface GoalPayload {
+  goalDescription: string;
+  timeEstimate: string;
+}
+
 const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>()
     const [goalDescription, setGoalDescription]: [string, Dispatch<SetStateAction<string>>] = useState("");
     const [timeEstimate, setTimeEstimate]: [string, Dispatch<SetStateAction<string>>] = useState("");
   
@@ -30,11 +35,12 @@ const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(updateGoal({ index: 0, field: 'goalDescription', value: goalDescription }));
-    dispatch(updateGoal({ index: 0, field: 'timeEstimate', value: timeEstimate }));
-    console.log(goalDescription, timeEstimate);
+    const payload: GoalPayload = {
+      goalDescription: goalDescription,
+      timeEstimate: timeEstimate
+    };
+    dispatch(addGoals(payload)); // Dispatching the addGoals async action
   };
-
   return (
     <>
     
