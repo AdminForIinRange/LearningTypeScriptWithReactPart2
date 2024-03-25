@@ -14,15 +14,15 @@ import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
 
 import ModalData from "../../components/Modal/ModalData.json";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store.ts";
+import { AppDispatch, RootState } from "../../store.ts";
 
-import {add, take, amount} from "../../features/counter/counterSlice.tsx"
+import {add, take, incrementAsync} from "../../features/counter/counterSlice.tsx"
 
 
 const GoalCreation: React.FC = () => {
 
   const value = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalValue, setModalValue]: [string, Dispatch<SetStateAction<string>>] = useState<string>("");
@@ -93,7 +93,7 @@ const GoalCreation: React.FC = () => {
         <Button  onClick={() => dispatch(take())}>
           Take
         </Button>
-        <Button  onClick={() => dispatch(amount(4))}>
+        <Button  onClick={() => dispatch(incrementAsync(4))}>
           4
         </Button>
       </VStack>
