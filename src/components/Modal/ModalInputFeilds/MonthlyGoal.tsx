@@ -15,9 +15,7 @@ import {onClose} from "../../../global/index.ts"
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import {MonthlyGoalOne,
-  MonthlyGoalTwo,
-  MonthlyGoalThree,  } from "../../../features/goals/goalsSlice.tsx";
+import {addGoals } from "../../../features/goals/goalsSlice.tsx";
 import { AppDispatch } from "../../../store.ts";
 const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
   const dispatch = useDispatch<AppDispatch>()
@@ -31,9 +29,9 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        dispatch(MonthlyGoalOne(monthlyGoalOne));
-      dispatch(MonthlyGoalTwo(monthlyGoalTwo)); // Dispatching setGoalDescription to update goalDescription in the store
-      dispatch(MonthlyGoalThree(monthlyGoalThree));
+        dispatch(addGoals({ MonthlyGoalOne: monthlyGoalOne }));
+        dispatch(addGoals({ MonthlyGoalTwo: monthlyGoalTwo }));
+        dispatch(addGoals({ MonthlyGoalThree: monthlyGoalThree }));
       };
     
  
