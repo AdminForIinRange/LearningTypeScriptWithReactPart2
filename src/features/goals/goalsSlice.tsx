@@ -37,37 +37,37 @@ const goalsSlice = createSlice({
   name: "goals",
   initialState,
   reducers: {
-    setMonthlyGoalOne: (state, action) => {
+    MonthlyGoalOne: (state, action) => {
       state.MonthlyGoalOne = action.payload;
     },
-    setMonthlyGoalTwo: (state, action) => {
+    MonthlyGoalTwo: (state, action) => {
       state.MonthlyGoalTwo = action.payload;
     },
-    setMonthlyGoalThree: (state, action) => {
+    MonthlyGoalThree: (state, action) => {
       state.MonthlyGoalThree = action.payload;
     },
-    setWeeklyGoalOne: (state, action) => {
+    WeeklyGoalOne: (state, action) => {
       state.WeeklyGoalOne = action.payload;
     },
-    setWeeklyGoalTwo: (state, action) => {
+    WeeklyGoalTwo: (state, action) => {
       state.WeeklyGoalTwo = action.payload;
     },
-    setWeeklyGoalThree: (state, action) => {
+    WeeklyGoalThree: (state, action) => {
       state.WeeklyGoalThree = action.payload;
     },
-    setDailyGoalOne: (state, action) => {
+    DailyGoalOne: (state, action) => {
       state.DailyGoalOne = action.payload;
     },
-    setDailyGoalTwo: (state, action) => {
+    DailyGoalTwo: (state, action) => {
       state.DailyGoalTwo = action.payload;
     },
-    setDailyGoalThree: (state, action) => {
+    DailyGoalThree: (state, action) => {
       state.DailyGoalThree = action.payload;
     },
-    setGoalDescription: (state, action) => {
+    GoalDescription: (state, action) => {
       state.goalDescription = action.payload;
     },
-    setTimeEstimate: (state, action) => {
+    TimeEstimate: (state, action) => {
       state.timeEstimate = action.payload;
     },
   }
@@ -92,17 +92,18 @@ export const addGoals = createAsyncThunk(
 
 // Export actions
 export const {
-  setMonthlyGoalOne,
-  setMonthlyGoalTwo,
-  setMonthlyGoalThree,
-  setWeeklyGoalOne,
-  setWeeklyGoalTwo,
-  setWeeklyGoalThree,
-  setDailyGoalOne,
-  setDailyGoalTwo,
-  setDailyGoalThree,
-  setGoalDescription,
-  setTimeEstimate
+  MonthlyGoalOne,
+  MonthlyGoalTwo,
+  MonthlyGoalThree,
+  WeeklyGoalOne,
+  WeeklyGoalTwo,
+  WeeklyGoalThree,
+  DailyGoalOne,
+  DailyGoalTwo,
+  DailyGoalThree,
+  GoalDescription,
+  TimeEstimate,
+  
 } = goalsSlice.actions;
 
 // Export reducer

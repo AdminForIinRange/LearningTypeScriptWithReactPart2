@@ -15,26 +15,30 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 
 import { useDispatch } from "react-redux";
+
+import { AppDispatch } from "../../../store.ts";
+import { DailyGoalOne, DailyGoalTwo, DailyGoalThree } from "../../../features/goals/goalsSlice.tsx";
+
+
 const DailyGoal : React.FC<onClose> = ({onClose}) => {
-    const dispatch = useDispatch();
-    const [DailyGoalOne, setDailyGoalOne]: [string, Dispatch<SetStateAction<string>>] = useState("");
+  const dispatch = useDispatch<AppDispatch>()
+    const [dailyGoalOne, setDailyGoalOne]: [string, Dispatch<SetStateAction<string>>] = useState("");
 
    
-    const [DailyGoalTwo, setDailyGoalTwo]: [string, Dispatch<SetStateAction<string>>] = useState("");
-    const [DailyGoalThree, setDailyGoalThree]: [string, Dispatch<SetStateAction<string>>] = useState("");
+    const [dailyGoalTwo, setDailyGoalTwo]: [string, Dispatch<SetStateAction<string>>] = useState("");
+    const [dailyGoalThree, setDailyGoalThree]: [string, Dispatch<SetStateAction<string>>] = useState("");
    
 
 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
- 
-
-        dispatch(updateGoal({ index: 0, field: 'DailyGoalOne', value: DailyGoalOne }));
-    dispatch(updateGoal({ index: 0, field: 'DailyGoalTwo', value: DailyGoalTwo }));
-    dispatch(updateGoal({ index: 0, field: 'DailyGoalThree', value: DailyGoalThree }));
-      };
+      event.preventDefault();
     
+      dispatch(DailyGoalOne(dailyGoalOne));
+      dispatch(DailyGoalTwo(dailyGoalTwo)); // Dispatching setGoalDescription to update goalDescription in the store
+      dispatch(DailyGoalThree(dailyGoalThree));
+    
+    };
  
     return (
      <>
@@ -65,7 +69,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
                 </FormLabel>
 
                 <Input
-                value={DailyGoalOne}
+                value={dailyGoalOne}
                 onChange={(e) => setDailyGoalOne(e.target.value)}
                   _focus={{ borderBottom: "2px solid #EBEBEB" }}
                  
@@ -86,7 +90,7 @@ Daily Goal Two
                 </FormLabel>
 
                 <Input
-                value={DailyGoalTwo}
+                value={dailyGoalTwo}
                 onChange={(e) => setDailyGoalTwo(e.target.value)}
                   _focus={{ borderBottom: "2px solid #EBEBEB" }}
                  
@@ -108,7 +112,7 @@ Daily Goal Three
                 </FormLabel>
 
                 <Input
-                value={DailyGoalThree}
+                value={dailyGoalThree}
                 onChange={(e) => setDailyGoalThree(e.target.value)}
                   _focus={{ borderBottom: "2px solid #EBEBEB" }}
                  
