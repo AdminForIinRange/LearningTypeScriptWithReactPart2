@@ -19,7 +19,7 @@ OnNavbox? : string
 DefineGoal? : boolean
 Monthly? : boolean
 Weekly? : boolean
-Daily? : boolean
+Daily? : string
 }
 
 // Define initial state
@@ -29,7 +29,7 @@ const initialState: GoalInterface = {
   DefineGoal: false,
   Monthly: false,
   Weekly: false,
-  Daily: false,
+  Daily: "",
 };
 
 // Define slice
@@ -52,7 +52,7 @@ const goalsSlice = createSlice({
       state.Weekly = action.payload
     },
 
-    DailyCheck: (state, action: PayloadAction<boolean>) => {
+    DailyCheck: (state, action: PayloadAction<string>) => {
       state.Daily = action.payload
     },
 

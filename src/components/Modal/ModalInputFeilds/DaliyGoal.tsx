@@ -4,11 +4,12 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { AppDispatch } from "../../../store.ts";
-import { addGoals } from "../../../features/goals/goalsSlice.tsx";
+import { AppDispatch , } from "../../../store.ts";
+import { DailyCheck, addGoals } from "../../../features/goals/goalsSlice.tsx";
 import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 
 const DailyGoal: React.FC<onClose> = ({ onClose }) => {
+
   const dispatch = useDispatch<AppDispatch>();
   const [dailyGoalOne, setDailyGoalOne]: [
     string,
@@ -63,6 +64,8 @@ const DailyGoal: React.FC<onClose> = ({ onClose }) => {
                 if (!dailyGoalOne || !dailyGoalTwo || !dailyGoalThree) {
                   setFormComplete(false);
                 } else {
+                  dispatch(DailyCheck("Daily"))
+
                   onClose();
                   setFormComplete(true);
 
