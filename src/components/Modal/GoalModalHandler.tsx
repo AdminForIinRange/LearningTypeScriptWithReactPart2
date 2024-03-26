@@ -11,7 +11,7 @@ import DefineYourGoal from "./ModalInputFeilds/DefineYourGoal.tsx";
 import MonthlyGoal from "./ModalInputFeilds/MonthlyGoal.tsx";
 import WeeklyGoal from "./ModalInputFeilds/WeeklyGoal.tsx";
 import DaliyGoal from "./ModalInputFeilds/DaliyGoal.tsx";
-import { FaCheck } from "react-icons/fa";
+
 
 const GoalModalHandler = ({modalValue,  blockScrollOnMount, isOpen, onClose}: GoalModalHandlerProps) => {
 

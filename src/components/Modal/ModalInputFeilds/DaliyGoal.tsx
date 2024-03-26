@@ -1,15 +1,14 @@
 import {
-  HStack,
+
   VStack,
-  Text,
-  Input,
+
   ModalHeader,
   ModalBody,
-  Button,
+
 } from "@chakra-ui/react";
 import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
-import { FaCheck } from "react-icons/fa";
+
 
 import { useDispatch } from "react-redux";
 

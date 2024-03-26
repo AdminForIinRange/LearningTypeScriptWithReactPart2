@@ -19,17 +19,7 @@ interface GoalInterface {
 
 // Define initial state
 const initialState: GoalInterface = {
-  MonthlyGoalOne: "",
-  MonthlyGoalTwo: "",
-  MonthlyGoalThree: "",
-  WeeklyGoalOne: "",
-  WeeklyGoalTwo: "",
-  WeeklyGoalThree: "",
-  DailyGoalOne: "",
-  DailyGoalTwo: "",
-  DailyGoalThree: "",
-  goalDescription: "",
-  timeEstimate: ""
+
 };
 
 // Define slice
@@ -37,39 +27,7 @@ const goalsSlice = createSlice({
   name: "goals",
   initialState,
   reducers: {
-    MonthlyGoalOne: (state, action) => {
-      state.MonthlyGoalOne = action.payload;
-    },
-    MonthlyGoalTwo: (state, action) => {
-      state.MonthlyGoalTwo = action.payload;
-    },
-    MonthlyGoalThree: (state, action) => {
-      state.MonthlyGoalThree = action.payload;
-    },
-    WeeklyGoalOne: (state, action) => {
-      state.WeeklyGoalOne = action.payload;
-    },
-    WeeklyGoalTwo: (state, action) => {
-      state.WeeklyGoalTwo = action.payload;
-    },
-    WeeklyGoalThree: (state, action) => {
-      state.WeeklyGoalThree = action.payload;
-    },
-    DailyGoalOne: (state, action) => {
-      state.DailyGoalOne = action.payload;
-    },
-    DailyGoalTwo: (state, action) => {
-      state.DailyGoalTwo = action.payload;
-    },
-    DailyGoalThree: (state, action) => {
-      state.DailyGoalThree = action.payload;
-    },
-    GoalDescription: (state, action) => {
-      state.goalDescription = action.payload;
-    },
-    TimeEstimate: (state, action) => {
-      state.timeEstimate = action.payload;
-    },
+
 
     
   },
@@ -110,20 +68,10 @@ export const addGoals = createAsyncThunk(
 );
 
 // Export actions
-export const {
-  MonthlyGoalOne,
-  MonthlyGoalTwo,
-  MonthlyGoalThree,
-  WeeklyGoalOne,
-  WeeklyGoalTwo,
-  WeeklyGoalThree,
-  DailyGoalOne,
-  DailyGoalTwo,
-  DailyGoalThree,
-  GoalDescription,
-  TimeEstimate,
+// export const {
+
   
-} = goalsSlice.actions;
+// } = goalsSlice.actions;
 
 // Export reducer
 export default goalsSlice.reducer;
