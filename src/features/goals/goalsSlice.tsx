@@ -15,13 +15,13 @@ interface GoalInterface {
   DailyGoalThree?: string;
   goalDescription?: string;
   timeEstimate?: string;
-OnNavbox? : string | boolean
+OnNavbox? : string
 }
 
 // Define initial state
 const initialState: GoalInterface = {
 
-  OnNavbox : ""
+  OnNavbox : "Lets Get Started"
 };
 
 // Define slice
@@ -29,7 +29,7 @@ const goalsSlice = createSlice({
   name: "goals",
   initialState,
   reducers: {
-    NavboxCheck: (state, action: PayloadAction<string | boolean>) => {
+    NavboxCheck: (state, action: PayloadAction<string>) => {
       state.OnNavbox = action.payload
     },
 
