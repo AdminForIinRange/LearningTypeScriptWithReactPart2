@@ -44,7 +44,7 @@ const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
     <ModalHeader>
             <HStack w={"100%"} h={"100%"} justify={"center"}    mt={"10px"}>
               {" "}
-              <Text  fontSize={"45px"} fontWeight={"400"}>
+              <Text  fontSize={"35px"} fontWeight={"100"}>
                 {" "}
                 Define Your Goal
               </Text>
