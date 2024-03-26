@@ -47,7 +47,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
     <ModalHeader>
             <HStack w={"100%"} h={"100%"} justify={"center"}    mt={"10px"}>
               {" "}
-              <Text fontFamily={"Raleway"} fontSize={"45px"} fontWeight={"700"}>
+              <Text  fontSize={"45px"} fontWeight={"700"}>
                 {" "}
                 Set 3 Daily Goals
               </Text>

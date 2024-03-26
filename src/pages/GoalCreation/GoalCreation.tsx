@@ -28,7 +28,7 @@ const GoalCreation: React.FC = () => {
           Lets Get Started
         </Text>
 
-        <VStack
+       { isOpen ? <> </>:<VStack
         
           justify={"center"}
           w={["90%", "90%", "60%", "50%"]}
@@ -74,7 +74,7 @@ const GoalCreation: React.FC = () => {
               </HStack>
             </Button>
           ))}
-        </VStack>
+        </VStack>}
         
 
        
