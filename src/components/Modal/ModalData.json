@@ -3,23 +3,23 @@
     "Navbox": [
       {
         "value": "Goal",
-        "title": "Define Your Goal",
-        "complete": true
+        "title": "Define Your Goal"
+       
       },
       {
         "value": "Monthly",
-        "title": "Monthly targets",
-        "complete": true
+        "title": "Monthly targets"
+       
       },
       {
         "value": "Weekly",
-        "title": "Weekly targets",
-        "complete": true
+        "title": "Weekly targets"
+       
       },
       {
         "value": "Daily",
-        "title": "Daily targets",
-        "complete": true
+        "title": "Daily targets"
+       
       }
     ]
   }

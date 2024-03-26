@@ -10,6 +10,7 @@ export const store = configureStore({
   reducer: {
     goals: goalsReducer,
     counter: counterReducer
+    
   },
 });
 

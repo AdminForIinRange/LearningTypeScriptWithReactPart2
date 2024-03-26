@@ -2,7 +2,7 @@ import { VStack, ModalBody } from "@chakra-ui/react";
 import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
 
-import { addGoals } from "../../../features/goals/goalsSlice.tsx";
+import { addGoals, CompletedBarArrayCheck } from "../../../features/goals/goalsSlice.tsx";
 
 import { AppDispatch } from "../../../store.ts";
 import { useDispatch } from "react-redux";
@@ -66,7 +66,7 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
                 } else {
                   onClose();
                   setFormComplete(true);
-
+                  dispatch(CompletedBarArrayCheck("Weekly"));
                   console.log("im closed");
                 }
               }}

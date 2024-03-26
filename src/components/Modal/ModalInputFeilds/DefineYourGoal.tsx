@@ -11,7 +11,7 @@ import { onClose } from "../../../global/index.ts";
 import { AppDispatch } from "../../../store.ts";
 import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 import { useDispatch } from "react-redux";
-import { addGoals } from "../../../features/goals/goalsSlice.tsx";
+import { addGoals, CompletedBarArrayCheck} from "../../../features/goals/goalsSlice.tsx";
 
 const DefineYourGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -74,6 +74,7 @@ const DefineYourGoal: React.FC<onClose> = ({ onClose }) => {
                 } else {
                   onClose();
                   setFormComplete(true);
+                  dispatch(CompletedBarArrayCheck("Goal"));
 
                   console.log("im closed");
                 }

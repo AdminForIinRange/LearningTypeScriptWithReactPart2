@@ -3,7 +3,7 @@ import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { addGoals } from "../../../features/goals/goalsSlice.tsx";
+import { addGoals, CompletedBarArrayCheck } from "../../../features/goals/goalsSlice.tsx";
 import { AppDispatch } from "../../../store.ts";
 import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
@@ -60,6 +60,7 @@ const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
                 } else {
                   onClose();
                   setFormComplete(true);
+                  dispatch(CompletedBarArrayCheck("Monthly"));
 
                   console.log("im closed");
                 }

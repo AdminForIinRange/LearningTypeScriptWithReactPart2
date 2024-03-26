@@ -20,6 +20,7 @@ DefineGoal? : boolean
 Monthly? : boolean
 Weekly? : boolean
 Daily? : string
+CompletedBarArray? : string[]
 }
 
 // Define initial state
@@ -31,6 +32,7 @@ const initialState: GoalInterface = {
   Monthly: false,
   Weekly: false,
   Daily: "",
+  CompletedBarArray : []
   
 };
 
@@ -57,6 +59,10 @@ const goalsSlice = createSlice({
     DailyCheck: (state, action: PayloadAction<string>) => {
       state.Daily = action.payload
     },
+
+    CompletedBarArrayCheck : (state, action: PayloadAction<string>) => {
+      state.CompletedBarArray?.push(action.payload)
+    }
 
 
   },
@@ -95,8 +101,10 @@ export const {
   NavboxCheck,
   DefineGoalCheck,
   MonthlyCheck,
+  
   WeeklyCheck,
   DailyCheck,
+  CompletedBarArrayCheck
 } = goalsSlice.actions;
 
 // Export reducer
