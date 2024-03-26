@@ -137,7 +137,7 @@ Monthly Goal Three
                       console.log("im closed");
                     
                     }}
-                    w={"225px"}
+                    w={"100%"}
                     rightIcon={<FaCheck />}
                    
                   >

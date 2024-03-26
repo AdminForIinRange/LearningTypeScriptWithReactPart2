@@ -109,7 +109,7 @@ const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
                       console.log("im closed");
                     
                     }}
-                    w={"225px"}
+                    w={"100%"}
                     rightIcon={<FaCheck />}
                    
                   >

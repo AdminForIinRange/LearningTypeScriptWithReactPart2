@@ -33,11 +33,11 @@ const GoalModalHandler = ({modalValue,  blockScrollOnMount, isOpen, onClose}: Go
     <Modal
       blockScrollOnMount={blockScrollOnMount}
       isOpen={isOpen}
-      size={"lg"}
+    size={"100%"}
       onClose={onClose}
     >
-      <ModalOverlay />
-      <ModalContent boxShadow={"xl"}>
+      <ModalOverlay bg="blackAlpha.400" />
+      <ModalContent w={["100%", "90%", "80%", "50%"]} boxShadow={"2xl"}>
         <ModalCloseButton />
         {modalValueDisplay()}
       </ModalContent>
