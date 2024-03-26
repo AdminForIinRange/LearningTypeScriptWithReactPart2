@@ -1,13 +1,11 @@
-import { HStack, Text, Input, Button, Box, VStack } from "@chakra-ui/react";
+import { Input, Button, Box, VStack } from "@chakra-ui/react";
 import { FaCheck } from "react-icons/fa";
 interface InputFeildProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // ReactNode allows any valid JSX to be passed as children
 }
 
-interface ModalTitleProps {
-  title: string;
-}
+
 
 interface ModalBTNProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -34,19 +32,7 @@ const ModalInputFeild: React.FC<InputFeildProps> = ({ value, onChange }) => {
   );
 };
 
-const ModalTitle: React.FC<ModalTitleProps> = ({ title }) => {
-  return (
-    <>
-      <HStack w={"100%"} h={"100%"} justify={"center"} mt={"10px"}>
-        {" "}
-        <Text fontSize={"35px"} fontWeight={"100"}>
-          {" "}
-          {title}
-        </Text>
-      </HStack>
-    </>
-  );
-};
+
 
 const ModalBTN: React.FC<ModalBTNProps> = ({ onClick, formComplete }) => {
   return (
@@ -79,4 +65,4 @@ const ModalBTN: React.FC<ModalBTNProps> = ({ onClick, formComplete }) => {
   );
 };
 
-export { ModalTitle, ModalInputFeild, ModalBTN };
+export {ModalInputFeild, ModalBTN };

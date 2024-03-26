@@ -1,4 +1,4 @@
-import { VStack, ModalHeader, ModalBody } from "@chakra-ui/react";
+import { VStack, ModalBody } from "@chakra-ui/react";
 import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
 
@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import { AppDispatch } from "../../../store.ts";
 import { addGoals } from "../../../features/goals/goalsSlice.tsx";
-import { ModalInputFeild, ModalTitle, ModalBTN } from "./ModalInputFeild.tsx";
+import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 
 const DailyGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -38,9 +38,7 @@ const DailyGoal: React.FC<onClose> = ({ onClose }) => {
 
   return (
     <>
-      <ModalHeader>
-        <ModalTitle title="Daily Goal" />
-      </ModalHeader>
+      
       <ModalBody w={"100%"} h={"100%"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>

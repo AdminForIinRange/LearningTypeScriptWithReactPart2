@@ -8,15 +8,15 @@
       },
       {
         "value": "Monthly",
-        "title": "Monthly targets for your goals"
+        "title": "Monthly targets"
       },
       {
         "value": "Weekly",
-        "title": "Weekly targets for your goal"
+        "title": "Weekly targets"
       },
       {
         "value": "Daily",
-        "title": "Daily targets for your goal"
+        "title": "Daily targets"
       }
     ]
   }

@@ -2,14 +2,14 @@ import {
   HStack,
   VStack,
   Input,
-  ModalHeader,
+  
   ModalBody,
   FormLabel,
 } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { onClose } from "../../../global/index.ts";
 import { AppDispatch } from "../../../store.ts";
-import { ModalInputFeild, ModalTitle, ModalBTN } from "./ModalInputFeild.tsx";
+import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 import { useDispatch } from "react-redux";
 import { addGoals } from "../../../features/goals/goalsSlice.tsx";
 
@@ -38,9 +38,7 @@ const DefineYourGoal: React.FC<onClose> = ({ onClose }) => {
   };
   return (
     <>
-      <ModalHeader>
-        <ModalTitle title="Define Your Goal" />
-      </ModalHeader>
+      
       <ModalBody w={"100%"} h={"100%"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
