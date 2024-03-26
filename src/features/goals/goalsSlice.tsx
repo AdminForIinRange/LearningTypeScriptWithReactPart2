@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import { db } from "../../config/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
@@ -15,22 +15,34 @@ interface GoalInterface {
   DailyGoalThree?: string;
   goalDescription?: string;
   timeEstimate?: string;
+OnNavbox? : string | boolean
 }
 
 // Define initial state
-const initialState: GoalInterface = {};
+const initialState: GoalInterface = {
+
+  OnNavbox : ""
+};
 
 // Define slice
 const goalsSlice = createSlice({
   name: "goals",
   initialState,
-  reducers: {},
+  reducers: {
+    NavboxCheck: (state, action: PayloadAction<string | boolean>) => {
+      state.OnNavbox = action.payload
+    },
+
+  },
   extraReducers: (builder) => {
     builder.addCase(addGoals.fulfilled, () => {
       console.log("Done");
     });
     builder.addCase(addGoals.pending, () => {
       console.log("pending");
+    });
+    builder.addCase(addGoals.rejected, () => {
+      console.log("error");
     });
   },
 });
@@ -53,9 +65,9 @@ export const addGoals = createAsyncThunk(
 );
 
 // Export actions
-// export const {
-
-// } = goalsSlice.actions;
+export const {
+  NavboxCheck
+} = goalsSlice.actions;
 
 // Export reducer
 export default goalsSlice.reducer;

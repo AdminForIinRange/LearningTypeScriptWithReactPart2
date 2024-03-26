@@ -6,19 +6,29 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
-
+import { AppDispatch } from "../../store.ts";
 import ModalData from "../../components/Modal/ModalData.json";
-
+import { useDispatch } from "react-redux";
+import { NavboxCheck } from "../../features/goals/goalsSlice.tsx";
 const GoalCreation: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalValue, setModalValue]: [
     string,
     Dispatch<SetStateAction<string>>
   ] = useState<string>("");
   const { Navbox } = ModalData[0];
+
+  useEffect (() => {
+   
+    if (!isOpen){
+      dispatch(NavboxCheck(false));
+    }
+   
+  }, [modalValue, dispatch, isOpen]);
 
   return (
     <>
@@ -35,16 +45,19 @@ const GoalCreation: React.FC = () => {
             w={["90%", "90%", "60%", "50%"]}
             align={"start"}
             gap={"40px"}
+          
             mt={"45px"}
           >
             {Navbox.map(({ value, title }, index) => (
-              <Button
+              <Button      
                 key={index}
                 variant={"none"}
                 w={"100%"}
                 onClick={() => {
                   setModalValue(value);
                   onOpen();
+                  dispatch(NavboxCheck(value))
+                 
                 }}
                 h={"65px"}
               >

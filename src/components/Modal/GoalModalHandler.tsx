@@ -28,21 +28,28 @@ const GoalModalHandler = ({
   };
 
   return (
+ 
+
+
     <Modal
       blockScrollOnMount={blockScrollOnMount}
       isOpen={isOpen}
       size={"100%"}
       onClose={onClose}
+      
     >
       <ModalContent
         mt={"225px"}
         w={["100%", "90%", "80%", "50%"]}
         boxShadow={"2xl"}
+ 
+      filter={"drop-shadow(0 0 0.2rem gray)"}
       >
         <ModalCloseButton />
         {modalValueDisplay()}
       </ModalContent>
     </Modal>
+ 
   );
 };
 
