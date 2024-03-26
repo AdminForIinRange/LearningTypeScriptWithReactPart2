@@ -1,4 +1,4 @@
-import { Modal, ModalContent, ModalCloseButton } from "@chakra-ui/react";
+import { Modal, ModalContent } from "@chakra-ui/react";
 
 import { GoalModalHandlerProps } from "../../global/index.ts";
 import DefineYourGoal from "./ModalInputFeilds/DefineYourGoal.tsx";

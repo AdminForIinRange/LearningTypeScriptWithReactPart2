@@ -26,10 +26,12 @@ Daily? : string
 const initialState: GoalInterface = {
 
   OnNavbox : "Lets Get Started",
+  
   DefineGoal: false,
   Monthly: false,
   Weekly: false,
   Daily: "",
+  
 };
 
 // Define slice

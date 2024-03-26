@@ -1,26 +1,26 @@
 [
   {
     "Navbox": [
-
       {
         "value": "Goal",
-        "title": "Define Your Goal"
+        "title": "Define Your Goal",
+        "complete": true
       },
       {
         "value": "Monthly",
-        "title": "Monthly targets"
+        "title": "Monthly targets",
+        "complete": true
       },
       {
         "value": "Weekly",
-        "title": "Weekly targets"
+        "title": "Weekly targets",
+        "complete": true
       },
       {
         "value": "Daily",
-        "title": "Daily targets"
+        "title": "Daily targets",
+        "complete": true
       }
     ]
   }
 ]
-
-
-
