@@ -36,7 +36,7 @@ const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
   return (
     <>
      
-      <ModalBody w={"100%"} h={"100%"}>
+      <ModalBody w={"100%"} h={"100%"}  mt={"20px"} >
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
             <ModalInputFeild

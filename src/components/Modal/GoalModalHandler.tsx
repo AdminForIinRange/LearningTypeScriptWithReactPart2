@@ -45,7 +45,7 @@ const GoalModalHandler = ({
  
       filter={"drop-shadow(0 0 0.2rem gray)"}
       >
-        <ModalCloseButton />
+        
         {modalValueDisplay()}
       </ModalContent>
     </Modal>
