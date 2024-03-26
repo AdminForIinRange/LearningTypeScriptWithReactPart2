@@ -16,12 +16,20 @@ interface GoalInterface {
   goalDescription?: string;
   timeEstimate?: string;
 OnNavbox? : string
+DefineGoal? : boolean
+Monthly? : boolean
+Weekly? : boolean
+Daily? : boolean
 }
 
 // Define initial state
 const initialState: GoalInterface = {
 
-  OnNavbox : "Lets Get Started"
+  OnNavbox : "Lets Get Started",
+  DefineGoal: false,
+  Monthly: false,
+  Weekly: false,
+  Daily: false,
 };
 
 // Define slice
@@ -32,6 +40,22 @@ const goalsSlice = createSlice({
     NavboxCheck: (state, action: PayloadAction<string>) => {
       state.OnNavbox = action.payload
     },
+    DefineGoalCheck: (state, action: PayloadAction<boolean>) => {
+      state.DefineGoal = action.payload
+    },
+
+    MonthlyCheck: (state, action: PayloadAction<boolean>) => {
+      state.Monthly = action.payload
+    },
+
+    WeeklyCheck: (state, action: PayloadAction<boolean>) => {
+      state.Weekly = action.payload
+    },
+
+    DailyCheck: (state, action: PayloadAction<boolean>) => {
+      state.Daily = action.payload
+    },
+
 
   },
   extraReducers: (builder) => {
@@ -66,7 +90,11 @@ export const addGoals = createAsyncThunk(
 
 // Export actions
 export const {
-  NavboxCheck
+  NavboxCheck,
+  DefineGoalCheck,
+  MonthlyCheck,
+  WeeklyCheck,
+  DailyCheck,
 } = goalsSlice.actions;
 
 // Export reducer
