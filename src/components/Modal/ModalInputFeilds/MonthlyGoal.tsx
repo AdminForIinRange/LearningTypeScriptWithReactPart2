@@ -63,7 +63,7 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
                 <Input
                 value={monthlyGoalOne}
                 onChange={(e) => setMonthlyGoalOne(e.target.value)}
-                  _focus={{ borderBottom: "2px solid #EBEBEB" }}
+                  _focus={{ border: "2px solid #B7EB8F" }}
                  
                   w={"100%"}
                   
@@ -81,7 +81,7 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
                 <Input
                 value={monthlyGoalTwo}
                 onChange={(e) => setMonthlyGoalTwo(e.target.value)}
-                  _focus={{ borderBottom: "2px solid #EBEBEB" }}
+                  _focus={{ border: "2px solid #B7EB8F" }}
                  
                   w={"100%"}
                   
@@ -101,7 +101,7 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
                 <Input
                 value={monthlyGoalThree}
                 onChange={(e) => setMonthlyGoalThree(e.target.value)}
-                  _focus={{ borderBottom: "2px solid #EBEBEB" }}
+                  _focus={{ border: "2px solid #B7EB8F" }}
                  
                   w={"100%"}
                   
@@ -121,7 +121,7 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
                 <HStack w={"100%"} justify={"Center"}>
                   <Button   mb={"25px"}
                   
-                  colorScheme="green"
+                  colorScheme="whatsapp"
                     type="submit"
                     onClick={() => {
                         onClose()

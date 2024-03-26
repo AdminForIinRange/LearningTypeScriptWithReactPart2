@@ -68,7 +68,7 @@ const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
                 <Input
                 value={goalDescription}
                 onChange={(e) => setGoalDescription(e.target.value)}
-                  _focus={{ borderBottom: "2px solid #EBEBEB" }}
+                _focus={{ border: "2px solid #B7EB8F" }}
                  
                   w={"100%"}
                   
@@ -90,7 +90,8 @@ const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
                   <Input
                                   onChange={(e) => setTimeEstimate(e.target.value)}
                   value={timeEstimate}
-                  
+                  _focus={{ border: "2px solid #B7EB8F" }}
+                 
                     placeholder="Select Date"
                     size="md"
                     type="date" // Use type="date" to capture only the date
@@ -101,7 +102,7 @@ const DefineYourGoal : React.FC<onClose> = ({onClose}) => {
                 <HStack w={"100%"} justify={"Center"}>
                   <Button   mb={"25px"}
                   
-                  colorScheme="green"
+                  colorScheme="whatsapp"
                     type="submit"
                     onClick={() => {
                         onClose()

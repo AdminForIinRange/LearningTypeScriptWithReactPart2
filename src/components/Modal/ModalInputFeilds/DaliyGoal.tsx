@@ -68,7 +68,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
                 <Input
                 value={dailyGoalOne}
                 onChange={(e) => setDailyGoalOne(e.target.value)}
-                  _focus={{ borderBottom: "2px solid #EBEBEB" }}
+                 _focus={{ border: "2px solid #B7EB8F" }}
                  
                   w={"100%"}
                   
@@ -87,7 +87,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
                 <Input
                 value={dailyGoalTwo}
                 onChange={(e) => setDailyGoalTwo(e.target.value)}
-                  _focus={{ borderBottom: "2px solid #EBEBEB" }}
+                  _focus={{ border: "2px solid #B7EB8F" }}
                  
                   w={"100%"}
                   
@@ -106,7 +106,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
                 <Input
                 value={dailyGoalThree}
                 onChange={(e) => setDailyGoalThree(e.target.value)}
-                  _focus={{ borderBottom: "2px solid #EBEBEB" }}
+                  _focus={{ border: "2px solid #B7EB8F" }}
                  
                   w={"100%"}
                   
@@ -126,7 +126,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
                 <HStack w={"100%"} justify={"Center"}>
                   <Button   mb={"25px"}
                   
-                  colorScheme="green"
+                  colorScheme="whatsapp"
                     type="submit"
                     onClick={() => {
                         onClose()
