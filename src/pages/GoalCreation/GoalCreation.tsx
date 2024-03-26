@@ -24,7 +24,7 @@ const GoalCreation: React.FC = () => {
   return (
     <>
       <VStack p={2} px={3}>
-        <Text fontFamily={"Raleway"} fontSize={"65px"} fontWeight={"700"}>
+        <Text fontFamily={"Raleway"} fontSize={"95px"} fontWeight={"700"}>
           Lets Get Started
         </Text>
 
