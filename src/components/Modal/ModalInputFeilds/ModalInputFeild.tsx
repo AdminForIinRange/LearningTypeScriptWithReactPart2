@@ -5,6 +5,8 @@ import {
   Input,
 
   Button,
+  Box,
+  VStack,
 } from "@chakra-ui/react";
 import { FaCheck } from "react-icons/fa";
 interface InputFeildProps {
@@ -20,11 +22,13 @@ interface ModalTitleProps {
 interface ModalBTNProps {
 
     onClick: React.MouseEventHandler<HTMLButtonElement>
+    formComplete: boolean
   }
 const ModalInputFeild: React.FC<InputFeildProps> = ({ value, onChange }) => {
   return (
     <>
       <Input
+      isRequired={true}
         value={value}
         onChange={onChange}
         _focus={{ border: "2px solid #B7EB8F" }}
@@ -55,24 +59,47 @@ const ModalTitle: React.FC<ModalTitleProps> = ({ title }) => {
   );
 };
 
-const ModalBTN: React.FC<ModalBTNProps> = ({ onClick }) => {
+const ModalBTN: React.FC<ModalBTNProps> = ({ onClick, formComplete }) => {
+  return (
+    <>
+      <VStack w={"100%"} justify={"Center"}>
+        <Button
+          mb={"25px"}
+          colorScheme="whatsapp"
+          type="submit"
+          onClick={onClick}
+          w={"100%"}
+          rightIcon={<FaCheck />}
+        >
+          Done
+        </Button>
+        <Box
+          borderRadius={"5px"}
+          display={formComplete ? "none" : "block"}
+          mt={"-25px"}
+          bg={"red.200"}
+          textAlign={"center"}
+          fontWeight={"200"}
+          color={"RED"}
+          w={"100%"}
+        >
+          Form not Complete
+        </Box>
+      </VStack>
+    </>
+  );
+};
+
+
+
+  const ModalInputFeildError: React.FC = () => {
     return (
       <>
-       <HStack w={"100%"} justify={"Center"}>
-                  <Button   mb={"25px"}
-                  
-                  colorScheme="whatsapp"
-                    type="submit"
-                    onClick={onClick}
-                    w={"100%"}
-                    rightIcon={<FaCheck />}
-                   
-                  >
-                    Done
-                  </Button>
-                </HStack>
+
+      
       </>
     );
   };
 
-export { ModalTitle, ModalInputFeild, ModalBTN};
+
+export { ModalTitle, ModalInputFeild, ModalBTN, ModalInputFeildError};
