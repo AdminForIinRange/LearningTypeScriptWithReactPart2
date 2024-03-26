@@ -3,6 +3,8 @@ import {
  
   ModalContent,
   ModalCloseButton,
+  Button,
+  HStack,
 } from "@chakra-ui/react";
 
 import { GoalModalHandlerProps } from "../../global/index.ts";
@@ -10,6 +12,7 @@ import DefineYourGoal from "./ModalInputFeilds/DefineYourGoal.tsx";
 import MonthlyGoal from "./ModalInputFeilds/MonthlyGoal.tsx";
 import WeeklyGoal from "./ModalInputFeilds/WeeklyGoal.tsx";
 import DaliyGoal from "./ModalInputFeilds/DaliyGoal.tsx";
+import { FaCheck } from "react-icons/fa";
 
 const GoalModalHandler = ({modalValue,  blockScrollOnMount, isOpen, onClose}: GoalModalHandlerProps) => {
 
@@ -41,6 +44,8 @@ const GoalModalHandler = ({modalValue,  blockScrollOnMount, isOpen, onClose}: Go
       <ModalContent mt={"225px"} w={["100%", "90%", "80%", "50%"]} boxShadow={"2xl"}>
         <ModalCloseButton />
         {modalValueDisplay()}
+
+      
       </ModalContent>
     </Modal>
   );
