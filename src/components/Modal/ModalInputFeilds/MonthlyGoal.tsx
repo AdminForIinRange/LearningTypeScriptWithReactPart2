@@ -42,7 +42,7 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
     <ModalHeader>
             <HStack w={"100%"} h={"100%"} justify={"center"}    mt={"10px"}>
               {" "}
-              <Text  fontSize={"45px"} fontWeight={"700"}>
+              <Text  fontSize={"45px"} fontWeight={"400"}>
                 {" "}
                 Set 3 Monthly Goals
               </Text>
