@@ -1,18 +1,8 @@
-import {
-
-  VStack,
-
-  ModalHeader,
-  ModalBody,
-
- 
-} from "@chakra-ui/react";
+import { VStack, ModalHeader, ModalBody } from "@chakra-ui/react";
 import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
 
-import {
-  addGoals
-} from "../../../features/goals/goalsSlice.tsx";
+import { addGoals } from "../../../features/goals/goalsSlice.tsx";
 
 import { AppDispatch } from "../../../store.ts";
 import { useDispatch } from "react-redux";
@@ -34,7 +24,6 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
     Dispatch<SetStateAction<string>>
   ] = useState("");
 
-  
   const [formComplete, setFormComplete]: [
     boolean,
     Dispatch<SetStateAction<boolean>>
@@ -51,42 +40,34 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
   return (
     <>
       <ModalHeader>
-        <ModalTitle title="Weekly Goal"/>
+        <ModalTitle title="Weekly Goal" />
       </ModalHeader>
       <ModalBody w={"100%"} h={"100%"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
-
-          <ModalInputFeild
+            <ModalInputFeild
               value={weeklyGoalOne}
-              onChange={(e) =>  setWeeklyGoalOne(e.target.value)}
+              onChange={(e) => setWeeklyGoalOne(e.target.value)}
             />
 
-      
-          <ModalInputFeild
+            <ModalInputFeild
               value={weeklyGoalTwo}
-              onChange={(e) =>  setWeeklyGoalTwo (e.target.value)}
+              onChange={(e) => setWeeklyGoalTwo(e.target.value)}
             />
 
-          
-<ModalInputFeild
+            <ModalInputFeild
               value={weeklyGoalThree}
-              onChange={(e) =>  setWeeklyGoalThree(e.target.value)}
+              onChange={(e) => setWeeklyGoalThree(e.target.value)}
             />
 
-
-          
-  
-<ModalBTN
-            formComplete={formComplete}
+            <ModalBTN
+              formComplete={formComplete}
               onClick={() => {
                 if (!weeklyGoalOne || !weeklyGoalTwo || !weeklyGoalThree) {
-        
-                  setFormComplete(false)
-  
+                  setFormComplete(false);
                 } else {
                   onClose();
-                  setFormComplete(true)
+                  setFormComplete(true);
 
                   console.log("im closed");
                 }

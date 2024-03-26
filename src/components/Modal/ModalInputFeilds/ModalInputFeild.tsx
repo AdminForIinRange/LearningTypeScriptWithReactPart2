@@ -1,13 +1,4 @@
-import {
-  HStack,
-
-  Text,
-  Input,
-
-  Button,
-  Box,
-  VStack,
-} from "@chakra-ui/react";
+import { HStack, Text, Input, Button, Box, VStack } from "@chakra-ui/react";
 import { FaCheck } from "react-icons/fa";
 interface InputFeildProps {
   value: string;
@@ -18,17 +9,15 @@ interface ModalTitleProps {
   title: string;
 }
 
-
 interface ModalBTNProps {
-
-    onClick: React.MouseEventHandler<HTMLButtonElement>
-    formComplete: boolean
-  }
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  formComplete: boolean;
+}
 const ModalInputFeild: React.FC<InputFeildProps> = ({ value, onChange }) => {
   return (
     <>
       <Input
-      isRequired={true}
+        isRequired={true}
         value={value}
         onChange={onChange}
         _focus={{ border: "2px solid #B7EB8F" }}
@@ -90,8 +79,4 @@ const ModalBTN: React.FC<ModalBTNProps> = ({ onClick, formComplete }) => {
   );
 };
 
-
-
-  
-
-export { ModalTitle, ModalInputFeild, ModalBTN};
+export { ModalTitle, ModalInputFeild, ModalBTN };

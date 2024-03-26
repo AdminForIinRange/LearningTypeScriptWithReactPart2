@@ -1,14 +1,12 @@
 import {
   HStack,
   VStack,
-
   Input,
   ModalHeader,
   ModalBody,
   FormLabel,
 } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useState } from "react";
-import { FaCheck } from "react-icons/fa";
 import { onClose } from "../../../global/index.ts";
 import { AppDispatch } from "../../../store.ts";
 import { ModalInputFeild, ModalTitle, ModalBTN } from "./ModalInputFeild.tsx";

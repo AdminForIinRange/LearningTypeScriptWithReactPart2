@@ -22,8 +22,7 @@ const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
     Dispatch<SetStateAction<string>>
   ] = useState("");
 
-
-    const [formComplete, setFormComplete]: [
+  const [formComplete, setFormComplete]: [
     boolean,
     Dispatch<SetStateAction<boolean>>
   ] = useState(true);
@@ -56,15 +55,13 @@ const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
             />
 
             <ModalBTN
-            formComplete={formComplete}
+              formComplete={formComplete}
               onClick={() => {
                 if (!monthlyGoalOne || !monthlyGoalTwo || !monthlyGoalThree) {
-        
-                  setFormComplete(false)
-  
+                  setFormComplete(false);
                 } else {
                   onClose();
-                  setFormComplete(true)
+                  setFormComplete(true);
 
                   console.log("im closed");
                 }

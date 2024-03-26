@@ -18,36 +18,21 @@ interface GoalInterface {
 }
 
 // Define initial state
-const initialState: GoalInterface = {
-
-};
+const initialState: GoalInterface = {};
 
 // Define slice
 const goalsSlice = createSlice({
   name: "goals",
   initialState,
-  reducers: {
-
-
-    
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      addGoals.fulfilled,
-      () => {
-      
-        console.log("Done");
-      }
-    );
-    builder.addCase(
-      addGoals.pending,
-      () => {
-       console.log("pending");
-      }
-    );
-
+    builder.addCase(addGoals.fulfilled, () => {
+      console.log("Done");
+    });
+    builder.addCase(addGoals.pending, () => {
+      console.log("pending");
+    });
   },
-
 });
 
 const GoalsCollectionRef = collection(db, "Goals");
@@ -58,7 +43,7 @@ export const addGoals = createAsyncThunk(
     try {
       await addDoc(GoalsCollectionRef, {
         ...goals,
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
       });
     } catch (error) {
       console.error("Error adding goals: ", error);
@@ -70,7 +55,6 @@ export const addGoals = createAsyncThunk(
 // Export actions
 // export const {
 
-  
 // } = goalsSlice.actions;
 
 // Export reducer

@@ -1,8 +1,5 @@
-
 const Goals = () => {
-  return (
-    <div>Goals</div>
-  )
-}
+  return <div>Goals</div>;
+};
 
-export default Goals
+export default Goals;
