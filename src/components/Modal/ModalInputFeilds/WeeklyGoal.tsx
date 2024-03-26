@@ -34,6 +34,12 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
     Dispatch<SetStateAction<string>>
   ] = useState("");
 
+  
+  const [formComplete, setFormComplete]: [
+    boolean,
+    Dispatch<SetStateAction<boolean>>
+  ] = useState(true);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -70,12 +76,22 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
 
 
           
-      <ModalBTN  onClick={() => {
-                        onClose()
-                   
-                      console.log("im closed");
-                    
-                    }} />
+  
+<ModalBTN
+            formComplete={formComplete}
+              onClick={() => {
+                if (!weeklyGoalOne || !weeklyGoalTwo || !weeklyGoalThree) {
+        
+                  setFormComplete(false)
+  
+                } else {
+                  onClose();
+                  setFormComplete(true)
+
+                  console.log("im closed");
+                }
+              }}
+            />
           </form>
         </VStack>
       </ModalBody>{" "}

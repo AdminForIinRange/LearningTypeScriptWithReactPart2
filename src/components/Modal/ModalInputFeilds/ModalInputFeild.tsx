@@ -92,14 +92,6 @@ const ModalBTN: React.FC<ModalBTNProps> = ({ onClick, formComplete }) => {
 
 
 
-  const ModalInputFeildError: React.FC = () => {
-    return (
-      <>
+  
 
-      
-      </>
-    );
-  };
-
-
-export { ModalTitle, ModalInputFeild, ModalBTN, ModalInputFeildError};
+export { ModalTitle, ModalInputFeild, ModalBTN};

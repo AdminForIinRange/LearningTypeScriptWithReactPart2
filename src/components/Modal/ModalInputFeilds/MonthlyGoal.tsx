@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addGoals } from "../../../features/goals/goalsSlice.tsx";
 import { AppDispatch } from "../../../store.ts";
-import { ModalInputFeild, ModalTitle, ModalBTN, ModalInputFeildError } from "./ModalInputFeild.tsx";
+import { ModalInputFeild, ModalTitle, ModalBTN } from "./ModalInputFeild.tsx";
 const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [monthlyGoalOne, setMonthlyGoalOne]: [
