@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 
 import { AppDispatch } from "../../../store.ts";
 import { addGoals } from "../../../features/goals/goalsSlice.tsx";
-import ModalInputFeild from "./ModalInputFeild.tsx";
+import {ModalInputFeild , ModalTitle} from "./ModalInputFeild.tsx";
 
 const DailyGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,13 +44,7 @@ const DailyGoal: React.FC<onClose> = ({ onClose }) => {
   return (
     <>
       <ModalHeader>
-        <HStack w={"100%"} h={"100%"} justify={"center"} mt={"10px"}>
-          {" "}
-          <Text fontSize={"35px"} fontWeight={"100"}>
-            {" "}
-            Set 3 Daily Goals
-          </Text>
-        </HStack>
+       <ModalTitle title="Daily Goal" />
       </ModalHeader>
       <ModalBody w={"100%"} h={"100%"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
