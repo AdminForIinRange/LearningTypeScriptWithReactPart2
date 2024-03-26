@@ -58,10 +58,7 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
             >
               <form onSubmit={handleSubmit}>
             
-              
-                <FormLabel fontWeight={400} fontSize={"17px"}>
-                Monthly Goal One
-                </FormLabel>
+           
 
                 <Input
                 value={monthlyGoalOne}
@@ -80,9 +77,6 @@ const MonthlyGoal : React.FC<onClose> = ({onClose}) => {
                   placeholder="I want to learn front end development"
                 />
 
-<FormLabel fontWeight={400} fontSize={"17px"}>
-Monthly Goal Two
-                </FormLabel>
 
                 <Input
                 value={monthlyGoalTwo}
@@ -102,9 +96,7 @@ Monthly Goal Two
                 />
 
 
-<FormLabel fontWeight={400} fontSize={"17px"}>
-Monthly Goal Three
-                </FormLabel>
+
 
                 <Input
                 value={monthlyGoalThree}

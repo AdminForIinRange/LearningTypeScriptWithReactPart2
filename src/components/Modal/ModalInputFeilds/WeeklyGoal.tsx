@@ -56,9 +56,6 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
       <ModalBody w={"100%"} h={"100%"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
-            <FormLabel fontWeight={400} fontSize={"17px"}>
-              Weekly Goal One
-            </FormLabel>
 
             <Input
               value={weeklyGoalOne}
@@ -74,10 +71,7 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
               placeholder="I want to learn front end development"
             />
 
-            <FormLabel fontWeight={400} fontSize={"17px"}>
-              Weekly Goal Two
-            </FormLabel>
-
+      
             <Input
               value={weeklyGoalTwo}
               onChange={(e) => setWeeklyGoalTwo(e.target.value)}
@@ -92,10 +86,7 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
               placeholder="I want Better in REACT"
             />
 
-            <FormLabel fontWeight={400} fontSize={"17px"}>
-              Weekly Goal Three
-            </FormLabel>
-
+          
             <Input
               value={weeklyGoalThree}
               onChange={(e) => setWeeklyGoalThree(e.target.value)}

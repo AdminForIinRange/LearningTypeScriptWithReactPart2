@@ -63,10 +63,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
             >
               <form onSubmit={handleSubmit}>
             
-              
-                <FormLabel fontWeight={400} fontSize={"17px"}>
-                Daily Goal One
-                </FormLabel>
+           
 
                 <Input
                 value={dailyGoalOne}
@@ -85,9 +82,7 @@ const DailyGoal : React.FC<onClose> = ({onClose}) => {
                   placeholder="I want to learn front end development"
                 />
 
-<FormLabel fontWeight={400} fontSize={"17px"}>
-Daily Goal Two
-                </FormLabel>
+
 
                 <Input
                 value={dailyGoalTwo}
@@ -107,9 +102,6 @@ Daily Goal Two
                 />
 
 
-<FormLabel fontWeight={400} fontSize={"17px"}>
-Daily Goal Three
-                </FormLabel>
 
                 <Input
                 value={dailyGoalThree}
