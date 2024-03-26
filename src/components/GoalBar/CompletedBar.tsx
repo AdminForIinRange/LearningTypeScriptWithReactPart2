@@ -41,7 +41,7 @@ const CompletedBar : React.FC<CompletedBarProps> = ({index, title}) => {
     align={"center"}
     px={5}
   >
-    <Text fontSize={"20px"} textAlign={"left"}>
+    <Text fontSize={"20px"} textAlign={"left"} textDecorationLine={"line-through"}>
       {title}
     </Text>
     <Spacer />

@@ -15,6 +15,9 @@ interface GoalInterface {
   DailyGoalThree?: string;
   goalDescription?: string;
   timeEstimate?: string;
+
+
+  
 OnNavbox? : string
 DefineGoal? : boolean
 Monthly? : boolean
@@ -32,9 +35,11 @@ const initialState: GoalInterface = {
   Monthly: false,
   Weekly: false,
   Daily: "",
-  CompletedBarArray : []
+  CompletedBarArray : [],
+
   
 };
+
 
 // Define slice
 const goalsSlice = createSlice({
@@ -62,6 +67,7 @@ const goalsSlice = createSlice({
 
     CompletedBarArrayCheck : (state, action: PayloadAction<string>) => {
       state.CompletedBarArray?.push(action.payload)
+      
     }
 
 

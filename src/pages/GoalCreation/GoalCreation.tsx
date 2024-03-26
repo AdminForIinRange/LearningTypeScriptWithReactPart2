@@ -13,12 +13,17 @@ import { AppDispatch, RootState } from "../../store.ts";
 import CompletedBar from "../../components/GoalBar/CompletedBar.tsx";
 import ModalData from "../../components/Modal/ModalData.json";
 import { useDispatch, useSelector } from "react-redux";
-import { NavboxCheck, CompletedBarArrayCheck } from "../../features/goals/goalsSlice.tsx";
+import {
+  NavboxCheck,
+  CompletedBarArrayCheck,
+} from "../../features/goals/goalsSlice.tsx";
 import GoalBars from "../../components/GoalBar/GoalBars.tsx";
+import { useNavigate } from "react-router-dom";
+import GoalsEntryBtn from "../../components/Buttons/GoalsEntryBtn.tsx";
 const GoalCreation: React.FC = () => {
-  const { OnNavbox, Daily, Weekly, Monthly, DefineGoal , CompletedBarArray} = useSelector(
-    (state: RootState) => state.goals
-  );
+  const navigate = useNavigate();
+  const { OnNavbox, Daily, Weekly, Monthly, DefineGoal, CompletedBarArray } =
+    useSelector((state: RootState) => state.goals);
   const dispatch = useDispatch<AppDispatch>();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -52,7 +57,7 @@ const GoalCreation: React.FC = () => {
             mt={"45px"}
           >
             {Navbox.map(({ value, title }, index) =>
-        CompletedBarArray && CompletedBarArray.includes(value) ? (
+              CompletedBarArray && CompletedBarArray.includes(value) ? (
                 <CompletedBar key={index} title={title} index={index} />
               ) : (
                 <GoalBars
@@ -66,6 +71,19 @@ const GoalCreation: React.FC = () => {
                   title={title}
                 />
               )
+            )}
+
+            {CompletedBarArray && CompletedBarArray.length > 3 ? (
+              <>
+                {" "}
+                <GoalsEntryBtn
+                  onClick={() => {
+                    navigate("/Goals");
+                  }}
+                />{" "}
+              </>
+            ) : (
+              <></>
             )}
           </VStack>
         )}
