@@ -1,13 +1,13 @@
 import {
-  HStack,
+
   VStack,
   Text,
-  Spacer,
+
   useDisclosure,
-  Button,
+
 } from "@chakra-ui/react";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { FaArrowRightLong } from "react-icons/fa6";
+
 import GoalModalHandler from "../../components/Modal/GoalModalHandler.tsx";
 import { AppDispatch, RootState } from "../../store.ts";
 import CompletedBar from "../../components/GoalBar/CompletedBar.tsx";
@@ -15,14 +15,14 @@ import ModalData from "../../components/Modal/ModalData.json";
 import { useDispatch, useSelector } from "react-redux";
 import {
   NavboxCheck,
-  CompletedBarArrayCheck,
+
 } from "../../features/goals/goalsSlice.tsx";
 import GoalBars from "../../components/GoalBar/GoalBars.tsx";
 import { useNavigate } from "react-router-dom";
 import GoalsEntryBtn from "../../components/Buttons/GoalsEntryBtn.tsx";
 const GoalCreation: React.FC = () => {
   const navigate = useNavigate();
-  const { OnNavbox, Daily, Weekly, Monthly, DefineGoal, CompletedBarArray } =
+  const { OnNavbox, CompletedBarArray } =
     useSelector((state: RootState) => state.goals);
   const dispatch = useDispatch<AppDispatch>();
   const { isOpen, onOpen, onClose } = useDisclosure();

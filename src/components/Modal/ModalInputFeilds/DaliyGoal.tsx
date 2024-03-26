@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { AppDispatch , } from "../../../store.ts";
-import { DailyCheck, addGoals, CompletedBarArrayCheck} from "../../../features/goals/goalsSlice.tsx";
+import { addGoals, CompletedBarArrayCheck} from "../../../features/goals/goalsSlice.tsx";
 import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 
 const DailyGoal: React.FC<onClose> = ({ onClose }) => {

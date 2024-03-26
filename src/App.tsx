@@ -11,6 +11,7 @@ import {
 import RootLayout from "./layouts/RootLayout.jsx";
 import Home from "./pages/Home/Home.tsx";
 import Goals from "./pages/Goals/Goals.tsx";
+import Auth from "./pages/Auth/Auth.tsx";
 import GoalCreation from "./pages/GoalCreation/GoalCreation.tsx";
 
 
@@ -18,6 +19,7 @@ import GoalCreation from "./pages/GoalCreation/GoalCreation.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
+        <Route path="LoginSignup" element={<Auth />} />
       <Route path="Home" element={<Home />} />
       <Route path="Goals" element={<Goals />} />
       <Route path="GoalCreation" element={<GoalCreation />} />

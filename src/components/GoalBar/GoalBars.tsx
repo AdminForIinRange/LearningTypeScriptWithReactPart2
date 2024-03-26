@@ -1,9 +1,9 @@
 import {
     HStack,
-    VStack,
+
     Text,
     Spacer,
-    useDisclosure,
+
     Button,
   } from "@chakra-ui/react";
   import { FaArrowRightLong } from "react-icons/fa6";
