@@ -17,6 +17,7 @@ import {
 
 import { AppDispatch } from "../../../store.ts";
 import { useDispatch } from "react-redux";
+import { ModalInputFeild, ModalTitle } from "./ModalInputFeild.tsx";
 const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -45,61 +46,29 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
   return (
     <>
       <ModalHeader>
-        <HStack w={"100%"} h={"100%"} justify={"center"} mt={"10px"}>
-          {" "}
-          <Text   fontSize={"35px"} fontWeight={"100"}>
-            {" "}
-            Set 3 Weekly Goals
-          </Text>
-        </HStack>
+        <ModalTitle title="Weekly Goal"/>
       </ModalHeader>
       <ModalBody w={"100%"} h={"100%"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
 
-            <Input
+          <ModalInputFeild
               value={weeklyGoalOne}
-              onChange={(e) => setWeeklyGoalOne(e.target.value)}
-             _focus={{ border: "2px solid #B7EB8F" }}
-              w={"100%"}
-              fontSize={"16px"}
-              mb={"25px"}
-              borderRadius={"10px"}
-              borderColor={"black"}
-              border="2px solid #EBEBEB" // Adjust the width and color as needed
-              type="text"
-              placeholder="I want to learn front end development"
+              onChange={(e) =>  setWeeklyGoalOne(e.target.value)}
             />
 
       
-            <Input
+          <ModalInputFeild
               value={weeklyGoalTwo}
-              onChange={(e) => setWeeklyGoalTwo(e.target.value)}
-              _focus={{ border: "2px solid #B7EB8F" }}
-              w={"100%"}
-              fontSize={"16px"}
-              mb={"25px"}
-              borderRadius={"10px"}
-              borderColor={"black"}
-              border="2px solid #EBEBEB" // Adjust the width and color as needed
-              type="text"
-              placeholder="I want Better in REACT"
+              onChange={(e) =>  setWeeklyGoalTwo (e.target.value)}
             />
 
           
-            <Input
+<ModalInputFeild
               value={weeklyGoalThree}
-              onChange={(e) => setWeeklyGoalThree(e.target.value)}
-              _focus={{ border: "2px solid #B7EB8F" }}
-              w={"100%"}
-              fontSize={"16px"}
-              mb={"40px"}
-              borderRadius={"10px"}
-              borderColor={"black"}
-              border="2px solid #EBEBEB" // Adjust the width and color as needed
-              type="text"
-              placeholder="I want to dabble in back end development"
+              onChange={(e) =>  setWeeklyGoalThree(e.target.value)}
             />
+
 
             <HStack w={"100%"} justify={"Center"}>
               <Button
