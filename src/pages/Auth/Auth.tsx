@@ -2,7 +2,8 @@
 
 const Auth = () => {
   return (
-    <div>Auth</div>
+    <div>Auth</div>  // dont forget to see firebase
+    // read write rules 
   )
 }
 

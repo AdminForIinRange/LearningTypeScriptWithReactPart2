@@ -20,9 +20,7 @@ interface GoalInterface {
   
 OnNavbox? : string
 DefineGoal? : boolean
-Monthly? : boolean
-Weekly? : boolean
-Daily? : string
+
 CompletedBarArray? : string[]
 }
 
@@ -31,10 +29,8 @@ const initialState: GoalInterface = {
 
   OnNavbox : "Lets Get Started",
   
-  DefineGoal: false,
-  Monthly: false,
-  Weekly: false,
-  Daily: "",
+
+
   CompletedBarArray : [],
 
   
@@ -53,17 +49,6 @@ const goalsSlice = createSlice({
       state.DefineGoal = action.payload
     },
 
-    MonthlyCheck: (state, action: PayloadAction<boolean>) => {
-      state.Monthly = action.payload
-    },
-
-    WeeklyCheck: (state, action: PayloadAction<boolean>) => {
-      state.Weekly = action.payload
-    },
-
-    DailyCheck: (state, action: PayloadAction<string>) => {
-      state.Daily = action.payload
-    },
 
     CompletedBarArrayCheck : (state, action: PayloadAction<string>) => {
       state.CompletedBarArray?.push(action.payload)
@@ -106,10 +91,7 @@ export const addGoals = createAsyncThunk(
 export const {
   NavboxCheck,
   DefineGoalCheck,
-  MonthlyCheck,
-  
-  WeeklyCheck,
-  DailyCheck,
+
   CompletedBarArrayCheck
 } = goalsSlice.actions;
 
