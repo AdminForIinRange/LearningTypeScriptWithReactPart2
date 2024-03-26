@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 
 import { AppDispatch } from "../../../store.ts";
 import { addGoals } from "../../../features/goals/goalsSlice.tsx";
-import {ModalInputFeild , ModalTitle} from "./ModalInputFeild.tsx";
+import {ModalInputFeild , ModalTitle , ModalBTN} from "./ModalInputFeild.tsx";
 
 const DailyGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -64,22 +64,12 @@ const DailyGoal: React.FC<onClose> = ({ onClose }) => {
               onChange={(e) => setDailyGoalThree(e.target.value)}
             />
 
-            <HStack w={"100%"} justify={"Center"}>
-              <Button
-                mb={"25px"}
-                colorScheme="whatsapp"
-                type="submit"
-                onClick={() => {
-                  onClose();
-
-                  console.log("im closed");
-                }}
-                w={"100%"}
-                rightIcon={<FaCheck />}
-              >
-                Done
-              </Button>
-            </HStack>
+<ModalBTN  onClick={() => {
+                        onClose()
+                   
+                      console.log("im closed");
+                    
+                    }} />
           </form>
         </VStack>
       </ModalBody>{" "}

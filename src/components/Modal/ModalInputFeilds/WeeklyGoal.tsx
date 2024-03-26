@@ -1,23 +1,22 @@
 import {
-  HStack,
+
   VStack,
-  Text,
-  Input,
+
   ModalHeader,
   ModalBody,
-  Button,
+
  
 } from "@chakra-ui/react";
 import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
-import { FaCheck } from "react-icons/fa";
+
 import {
   addGoals
 } from "../../../features/goals/goalsSlice.tsx";
 
 import { AppDispatch } from "../../../store.ts";
 import { useDispatch } from "react-redux";
-import { ModalInputFeild, ModalTitle } from "./ModalInputFeild.tsx";
+import { ModalInputFeild, ModalTitle, ModalBTN } from "./ModalInputFeild.tsx";
 const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -70,22 +69,13 @@ const WeeklyGoal: React.FC<onClose> = ({ onClose }) => {
             />
 
 
-            <HStack w={"100%"} justify={"Center"}>
-              <Button
-                mb={"25px"}
-                colorScheme="whatsapp"
-                type="submit"
-                onClick={() => {
-                  onClose();
-
-                  console.log("im closed");
-                }}
-                w={"100%"}
-                rightIcon={<FaCheck />}
-              >
-                Done
-              </Button>
-            </HStack>
+          
+      <ModalBTN  onClick={() => {
+                        onClose()
+                   
+                      console.log("im closed");
+                    
+                    }} />
           </form>
         </VStack>
       </ModalBody>{" "}

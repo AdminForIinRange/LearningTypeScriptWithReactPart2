@@ -3,8 +3,7 @@ import {
  
   ModalContent,
   ModalCloseButton,
-  Button,
-  HStack,
+
 } from "@chakra-ui/react";
 
 import { GoalModalHandlerProps } from "../../global/index.ts";
