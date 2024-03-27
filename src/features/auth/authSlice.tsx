@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { signInWithPopup ,signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
+import { signInWithPopup ,signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail} from "firebase/auth";
 import { auth, provider } from "../../config/firebase";
 import { FirebaseError } from "firebase/app";
 
@@ -139,6 +139,20 @@ const authSlice = createSlice({
         console.log(action.error.code)
       }
     })
+    .addCase(resetPassword.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(resetPassword.fulfilled, (state) => {
+      state.isLoading = false;
+      state.errorState = null;
+    })
+    .addCase(resetPassword.rejected, (state, action) => {
+      state.isLoading = false;
+      state.errorState ={
+        message: action.error.message || "Something went wrong",
+      }
+      
+    });
   },
 });
 
@@ -174,7 +188,7 @@ export const signInWithGoogle = createAsyncThunk(
       localStorage.setItem('UserTestStorage', JSON.stringify(authInfo));
       return authInfo;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -189,7 +203,7 @@ export const signOutUser = createAsyncThunk(
       localStorage.removeItem('authToken');
       localStorage.setItem('authToken', "");
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -211,10 +225,10 @@ export const signInWithEmailPassword = createAsyncThunk(
       localStorage.setItem('authToken', authInfo.userID);
       return authInfo;
     } catch (error) {
-      if (error === "auth/invalid-credential") {
+      if (error.code ===  "auth/invalid-credential") {
         dispatch(setinvalidCredential(true)); // Dispatch action to set emailInUse to true
       }
-      return rejectWithValue(error );
+      return rejectWithValue(error.message );
     }
   }
 );
@@ -245,6 +259,21 @@ export const registerWithEmailAndPassword = createAsyncThunk(
         dispatch(setweakPassword(true)); // Dispatch action to set weakPassword to true
       }
       return rejectWithValue(error);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async ({email} : {email: string},  { rejectWithValue, dispatch }) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    console.log(email)
+    dispatch(setForgotPassword(true))
+      return null; // Success, no need to return any data
+    } catch (error) {
+      console.log(email)
+      return rejectWithValue(error.message);
     }
   }
 );
