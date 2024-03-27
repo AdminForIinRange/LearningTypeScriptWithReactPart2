@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { signInWithPopup ,signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail} from "firebase/auth";
 import { auth, provider } from "../../config/firebase";
-import { FirebaseError } from "firebase/app";
 
 interface AuthStateInterface {
   LoginForm: boolean;

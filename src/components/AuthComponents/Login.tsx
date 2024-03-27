@@ -1,10 +1,8 @@
 import { FormLabel, Input, HStack, Checkbox, Button, Divider, Text, Box, Progress} from '@chakra-ui/react'
 import React, {
-  Dispatch,
+
   FormEvent,
-  FormHTMLAttributes,
-  SetStateAction,
-  useEffect,
+
   useState,
 } from "react";
 import { GoogleIcon } from '../../assets/iocns/AuthIcons'
@@ -16,7 +14,7 @@ import ForgotPass from './AuthModal/ForgotPass.tsx';
 const Login : React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-     isLoading, invalidCredential, errorState
+     isLoading, invalidCredential,
   } = useSelector((state: RootState) => state.auth);
 
 

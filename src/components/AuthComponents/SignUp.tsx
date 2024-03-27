@@ -10,11 +10,9 @@ import {
   Progress,
 } from "@chakra-ui/react";
 import React, {
-  Dispatch,
+
   FormEvent,
-  FormHTMLAttributes,
-  SetStateAction,
-  useEffect,
+
   useState,
 } from "react";
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";

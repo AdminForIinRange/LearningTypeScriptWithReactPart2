@@ -8,7 +8,7 @@ import {
   doc,
   getDocs,
   query,
-  where,
+
 } from "firebase/firestore";
 // Define TypeScript types
 interface GoalInterface {
