@@ -22,13 +22,13 @@ const Auth = () => {
   const { LoginForm, user } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (user) {
+    if (localStorage.getItem('authToken')) {
       navigate("/");
     } else {
       navigate("/loginsignup");
     }
 
-  }, [user]);
+  }, [user, localStorage.getItem('authToken')]);
 
   return (
     <>

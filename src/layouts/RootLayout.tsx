@@ -12,7 +12,7 @@ export default function RootLayout() {
   return (
     <>
      
-{  user?    <Navbar /> : null}
+      {localStorage.getItem('authToken') ? <Navbar /> : null}
      
       <Outlet />
 

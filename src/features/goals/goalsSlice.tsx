@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import { db } from "../../config/firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+
+import { addDoc, collection, serverTimestamp, doc } from "firebase/firestore";
 
 // Define TypeScript types
 interface GoalInterface {
@@ -70,13 +71,21 @@ const goalsSlice = createSlice({
   },
 });
 
-const GoalsCollectionRef = collection(db, "Goals");
-
 export const addGoals = createAsyncThunk(
   "goals/addGoals",
   async (goals: GoalInterface) => {
     try {
-      await addDoc(GoalsCollectionRef, {
+      // Retrieve user ID from local storage
+      const userId = localStorage.getItem('authToken');
+      
+      if (!userId) {
+        throw new Error("User ID not found in local storage");
+      }
+
+      const userDocRef = doc(db, "users", userId); // Assuming your user documents are stored in a collection named "users"
+      const goalsCollectionRef = collection(userDocRef, "goals");
+
+      await addDoc(goalsCollectionRef, {
         ...goals,
         createdAt: serverTimestamp(),
       });
@@ -86,7 +95,6 @@ export const addGoals = createAsyncThunk(
     }
   }
 );
-
 // Export actions
 export const {
   NavboxCheck,

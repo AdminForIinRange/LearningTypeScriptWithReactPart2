@@ -25,6 +25,7 @@ import {
   registerWithEmailAndPassword,
   sethasNotPasswordVerified,
   setweakPassword,
+  setLoginForm,
 } from "../../features/auth/authSlice.tsx";
 
 const SignUp: React.FC = () => {
@@ -32,7 +33,7 @@ const SignUp: React.FC = () => {
   const {
     isLoading,
 
-    errorState,
+    
     emailInUse,
 
     hasNotPasswordVerified,
@@ -100,7 +101,7 @@ const SignUp: React.FC = () => {
               <Text fontWeight={450} color={"#DD6B20"}>
                 The Email you have entered is already Signed Up{" "}
                 <Button
-                  onClick={handleSignInWithGoogle}
+                  onClick={() => dispatch(setLoginForm(true))}
                   colorScheme="yellow.100"
                   variant="link"
                 >
@@ -202,10 +203,7 @@ const SignUp: React.FC = () => {
           {isLoading && (
             <Progress p={"0px"} m={"0px"} size="xs" isIndeterminate />
           )}
-          <Text color="RED " fontSize={"10px"}>
-            {" "}
-            {errorState && errorState.message}{" "}
-          </Text>
+         
         </HStack>
       </form>
     </>

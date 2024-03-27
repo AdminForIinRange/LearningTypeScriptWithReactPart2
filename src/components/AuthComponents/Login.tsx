@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import { GoogleIcon } from '../../assets/iocns/AuthIcons'
-import { resetPassword, setForgotPassword, signInWithEmailPassword, signInWithGoogle } from '../../features/auth/authSlice.tsx';
+import { resetPassword, setForgotPassword, setLoginForm, signInWithEmailPassword, signInWithGoogle } from '../../features/auth/authSlice.tsx';
 import { AppDispatch, RootState } from "../../store.ts";
 import { useDispatch, useSelector } from "react-redux";
 import ForgotPass from './AuthModal/ForgotPass.tsx';
@@ -62,11 +62,11 @@ const Login : React.FC = () => {
         <HStack justify={"center"}>
           <Text fontWeight={450} color={"#9B2C2C"}>
             Email or Password Incorrect try{" "}
-            <Button colorScheme="red" variant="link">
+            <Button colorScheme="red" variant="link" onClick={() => dispatch(setForgotPassword(true))}>
               Forgot password?
             </Button>{" "}
             or{" "}
-            <Button colorScheme="orange" variant="link">
+            <Button colorScheme="orange" variant="link" onClick={() => dispatch(setLoginForm(false))}>
               Sign Up
             </Button>
           </Text>
@@ -134,7 +134,7 @@ const Login : React.FC = () => {
               {isLoading && (
             <Progress p={"0px"} m={"0px"} size="xs" isIndeterminate />
           )}
-             <Text color="RED " fontSize={"10px"}> {errorState && errorState.message} </Text>
+            
             </HStack>
           </form>
           
