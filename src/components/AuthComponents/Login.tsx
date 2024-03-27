@@ -1,16 +1,81 @@
-import { FormLabel, Input, HStack, Checkbox, Button, Divider, Text} from '@chakra-ui/react'
-import React from 'react'
+import { FormLabel, Input, HStack, Checkbox, Button, Divider, Text, Box, Progress} from '@chakra-ui/react'
+import React, {
+  Dispatch,
+  FormEvent,
+  FormHTMLAttributes,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { GoogleIcon } from '../../assets/iocns/AuthIcons'
-import { AppDispatch } from "../../store.ts";
-import { useDispatch } from "react-redux";
-import { signInWithGoogle } from '../../features/auth/authSlice.tsx';
+import { resetPassword, setForgotPassword, signInWithEmailPassword, signInWithGoogle } from '../../features/auth/authSlice.tsx';
+import { AppDispatch, RootState } from "../../store.ts";
+import { useDispatch, useSelector } from "react-redux";
+import ForgotPass from './AuthModal/ForgotPass.tsx';
 
 const Login : React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const {
+     isLoading, invalidCredential, forgotPassword, errorState
+  } = useSelector((state: RootState) => state.auth);
+
+
+
+
+
+
+
+
+  const [email, setEmail]: [
+    string,
+    React.Dispatch<React.SetStateAction<string>>
+  ] = useState<string>("");
+
+  const [password, setPassword]: [
+    string,
+    React.Dispatch<React.SetStateAction<string>>
+  ] = useState<string>("");
+
+
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(signInWithEmailPassword({ email, password }));
+  };
+
+
   return (
     <>
     
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={handleSubmit}>
+
+
+    {invalidCredential ? (
+    <>
+      <Box
+        w={"100%"}
+        h={"30px"}
+        bg={"#FED7D7"}
+        mb={"15px"}
+        border={" 2px dotted #FC8181"}
+      >
+        <HStack justify={"center"}>
+          <Text fontWeight={450} color={"#9B2C2C"}>
+            Email or Password Incorrect try{" "}
+            <Button colorScheme="red" variant="link">
+              Forgot password?
+            </Button>{" "}
+            or{" "}
+            <Button colorScheme="orange" variant="link">
+              Sign Up
+            </Button>
+          </Text>
+        </HStack>
+      </Box>
+    </>
+  ) : (
+    <></>
+  )}
             <FormLabel mt={"20px"} htmlFor="email">
               {" "}
               Email
@@ -21,6 +86,8 @@ const Login : React.FC = () => {
               w={"100%"}
               autoComplete="current-email"
               required
+              value={email}
+      onChange={(e) => setEmail(e.target.value)}
             />
             <FormLabel mt={"20px"} htmlFor="password">
               password
@@ -31,14 +98,18 @@ const Login : React.FC = () => {
               required
               autoComplete="current-password"
               w={"100%"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <HStack mt={"15px"} justify="space-between">
               <Checkbox>Remember me</Checkbox>
-              <Button variant="link" size="sm">
+              <Button variant="link" size="sm"   onClick={() => dispatch(setForgotPassword(true))} >
                 Forgot password?
               </Button>
             </HStack>
+
+<ForgotPass   email={email} />
 
             <Button  colorScheme="whatsapp" mt={"20px"} w={"100%"} type="submit">
               Login
@@ -56,6 +127,10 @@ const Login : React.FC = () => {
               <Button  onClick={() => dispatch(signInWithGoogle())} colorScheme="gray" w={"20%"}>
                 <GoogleIcon fontSize={"xl"} />
               </Button>
+              {isLoading && (
+            <Progress p={"0px"} m={"0px"} size="xs" isIndeterminate />
+          )}
+             <Text color="RED " fontSize={"10px"}> {errorState && errorState.message} </Text>
             </HStack>
           </form>
           
