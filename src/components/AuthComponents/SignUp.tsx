@@ -8,11 +8,11 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, FormEvent, FormHTMLAttributes, SetStateAction, useEffect, useState } from "react";
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";
 import { AppDispatch, RootState } from "../../store.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { registerWithEmailAndPassword } from "../../features/goals/goalsSlice.tsx";
+import { signInWithGoogle, registerWithEmailAndPassword , sethasNotPasswordVerified, setEmailInUse, setweakPassword} from "../../features/auth/authSlice.tsx";
 
 const SignUp: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,7 +33,7 @@ const SignUp: React.FC = () => {
     React.Dispatch<React.SetStateAction<string>>
   ] = useState<string>("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(password, rePassword);
     if (password === rePassword) {
@@ -45,6 +45,17 @@ const SignUp: React.FC = () => {
       console.log(password, rePassword);
     }
   };
+
+
+  const handleSignInWithGoogle = () => {
+    dispatch(signInWithGoogle());
+  };
+
+
+  if (password.length  > 5){
+    dispatch(setweakPassword(false))
+     
+  }
 
   return (
     <>
@@ -62,7 +73,7 @@ const SignUp: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-         <Box display={!emailInUse ? "none" : "block"}
+        {emailInUse ?  <Box 
                 w={"100%"}
                 h={"30px"}
                 bg={"#FEEBC8"}
@@ -72,12 +83,12 @@ const SignUp: React.FC = () => {
                 <HStack justify={"center"}>
                   <Text fontWeight={450} color={"#DD6B20"}>
                     The Email you have entered is already Signed Up{" "}
-                    <Button colorScheme="yellow.100" variant="link">
+                    <Button onClick={handleSignInWithGoogle} colorScheme="yellow.100" variant="link">
                       Login
                     </Button>
                   </Text>
                 </HStack>
-              </Box>
+              </Box> : null}
         <FormLabel mt={"20px"} htmlFor="password">
           password
         </FormLabel>

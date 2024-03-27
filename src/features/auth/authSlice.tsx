@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { signInWithPopup ,signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
 import { auth, provider } from "../../config/firebase";
+import { FirebaseError } from "firebase/app";
 
 interface AuthStateInterface {
   LoginForm: boolean;
   user: userDataInterface | null; // Change made here
   isLoading: boolean;
-  error: {message: string} | null;
+  errorState: {message: string} | null;
   emailInUse: boolean;
   invalidCredential: boolean;
   hasNotPasswordVerified: boolean;
@@ -23,11 +24,13 @@ interface userDataInterface {
   
 }
 
+
+
 const initialState: AuthStateInterface = {
   LoginForm: true,
   user: null, // Change made here
   isLoading: false,
-  error:{message: ''},
+  errorState:{message: ''},
   emailInUse: false,
   invalidCredential: false,
   hasNotPasswordVerified: false,
@@ -75,11 +78,11 @@ const authSlice = createSlice({
         email: action.payload.email,
         isAuth: action.payload.isAuth,
       };
-      state.error = null;
+      state.errorState = null;
     })
     .addCase(signInWithGoogle.rejected, (state, action) => {
       state.isLoading = false;
-      state.error ={
+      state.errorState ={
         message: action.error.message || "Something went wrong",
       }
     })
@@ -96,15 +99,16 @@ const authSlice = createSlice({
         email: action.payload.email,
         isAuth: action.payload.isAuth,
       };
-      state.error = null;
+      state.errorState = null;
     })
     .addCase(signInWithEmailPassword.rejected, (state, action) => {
       state.isLoading = false;
-      state.error ={
+      state.errorState ={
         message: action.error.message || "Something went wrong",
       }
       if (action.payload === "auth/invalid-credential") {
         state.invalidCredential = true;
+        console.log(action.error.code)
       }
      
     })
@@ -116,25 +120,43 @@ const authSlice = createSlice({
     .addCase(registerWithEmailAndPassword.fulfilled, (state, action) => {
       state.isLoading = false;
       state.user = action.payload;
-      state.error = null;
-      state.emailInUse = true;
-      state.weakPassword = true;
+      state.errorState = null;
+      state.emailInUse = false;
+      state.weakPassword = false;
       
     })
     .addCase(registerWithEmailAndPassword.rejected, (state, action) => {
       state.isLoading = false;
-      state.error ={
+      state.errorState ={
         message: action.error.message || "Something went wrong",
       }
-      if (action.payload === "auth/email-already-in-use") {
+      if (action.error.code === "auth/email-already-in-use") {
         state.emailInUse = true;
+        console.log(action.error.code)
       }
       if (action.payload === "auth/weak-password") {
         state.weakPassword = true;
+        console.log(action.error.code)
       }
     })
   },
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const signInWithGoogle = createAsyncThunk(
   "auth/signInWithGoogle",
@@ -199,34 +221,33 @@ export const signInWithEmailPassword = createAsyncThunk(
 
 
 
+
 export const registerWithEmailAndPassword = createAsyncThunk(
   "auth/registerWithEmailAndPassword",
-  async ({ email, password } : { email: string; password: string }, { rejectWithValue, dispatch }) => {
+  async ({ email, password }: { email: string; password: string }, { rejectWithValue, dispatch }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const authInfo = {
         name: user.displayName,
         profilePhoto: user.photoURL,
-      
         userID: user.uid,
         email: user.email,
         isAuth: true,
       };
       return authInfo;
     } catch (error) {
-      if (error === "auth/email-already-in-use") {
+      console.error(error);
+      if (error.code === "auth/email-already-in-use") {
         dispatch(setEmailInUse(true)); // Dispatch action to set emailInUse to true
       }
-      if (error === "auth/weak-password") {
-        dispatch(setweakPassword(true)); // Dispatch action to set emailInUse to true
+      if (error.code === "auth/weak-password") {
+        dispatch(setweakPassword(true)); // Dispatch action to set weakPassword to true
       }
-      return rejectWithValue(error );
+      return rejectWithValue(error);
     }
   }
 );
-
-
 
 
 export const { setLoginForm  , setUserData, setEmailInUse, setinvalidCredential, sethasNotPasswordVerified, setForgotPassword, setweakPassword} = authSlice.actions;
