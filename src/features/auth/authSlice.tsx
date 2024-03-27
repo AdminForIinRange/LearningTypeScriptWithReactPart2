@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup ,signOut} from "firebase/auth";
 import { auth, provider } from "../../config/firebase";
 
 interface AuthStateInterface {
@@ -99,6 +99,7 @@ export const signInWithGoogle = createAsyncThunk(
         isAuth: true,
       };
       localStorage.setItem('authToken', authInfo.userID);
+      localStorage.setItem('UserTestStorage', JSON.stringify(authInfo));
       return authInfo;
     } catch (error) {
       return rejectWithValue(error);
@@ -106,5 +107,19 @@ export const signInWithGoogle = createAsyncThunk(
   }
 );
 
-export const { setLoginForm } = authSlice.actions;
+
+
+export const signOutUser = createAsyncThunk(
+  "auth/signOutUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem('authToken');
+      // No need to log state.user here, as it's not relevant to the functionality
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+export const { setLoginForm  , setUserData, setEmailInUse, setinvalidCredential, sethasNotPasswordVerified, setForgotPassword, setweakPassword} = authSlice.actions;
 export default authSlice.reducer;
