@@ -104,7 +104,11 @@ const Login : React.FC = () => {
 
             <HStack mt={"15px"} justify="space-between">
               <Checkbox>Remember me</Checkbox>
-              <Button variant="link" size="sm"   onClick={() => dispatch(setForgotPassword(true))} >
+              <Button variant="link" size="sm"   onClick={() => {
+                dispatch(resetPassword({email}))
+                dispatch(setForgotPassword(true))}
+                
+                } >
                 Forgot password?
               </Button>
             </HStack>
