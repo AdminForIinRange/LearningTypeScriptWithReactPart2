@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../config/firebase";
 
 interface AuthStateInterface {

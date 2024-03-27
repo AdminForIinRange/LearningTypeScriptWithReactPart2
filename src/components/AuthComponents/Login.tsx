@@ -1,8 +1,8 @@
 import { FormLabel, Input, HStack, Checkbox, Button, Divider, Text} from '@chakra-ui/react'
 import React from 'react'
 import { GoogleIcon } from '../../assets/iocns/AuthIcons'
-import { AppDispatch, RootState } from "../../store.ts";
-import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store.ts";
+import { useDispatch } from "react-redux";
 import { signInWithGoogle } from '../../features/auth/authSlice.tsx';
 
 const Login : React.FC = () => {

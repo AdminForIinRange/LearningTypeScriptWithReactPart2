@@ -1,15 +1,12 @@
 import {
-  HStack,
+
   Text,
   VStack,
-  Input,
-  FormLabel,
+
   Button,
-  Checkbox,
-  Divider,
+
 } from "@chakra-ui/react";
 
-import { GoogleIcon } from "../../assets/iocns/AuthIcons";
 import Login from "../../components/AuthComponents/Login";
 import SignUp from "../../components/AuthComponents/SignUp";
 import { useDispatch, useSelector } from "react-redux";
