@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { signInWithPopup ,signOut} from "firebase/auth";
+import { signInWithPopup ,signOut, signInWithEmailAndPassword} from "firebase/auth";
 import { auth, provider } from "../../config/firebase";
 
 interface AuthStateInterface {
@@ -83,6 +83,31 @@ const authSlice = createSlice({
         message: action.error.message || "Something went wrong",
       }
     })
+
+    .addCase(signInWithEmailPassword.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(signInWithEmailPassword.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = {
+        name: action.payload.name,
+        profilePhoto: action.payload.profilePhoto,
+        userID: action.payload.userID,
+        email: action.payload.email,
+        isAuth: action.payload.isAuth,
+      };
+      state.error = null;
+    })
+    .addCase(signInWithEmailPassword.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error ={
+        message: action.error.message || "Something went wrong",
+      }
+      if (action.payload === "auth/invalid-credential") {
+        state.invalidCredential = true;
+      }
+     
+    })
   },
 });
 
@@ -122,6 +147,30 @@ export const signOutUser = createAsyncThunk(
   }
 );
 
+export const signInWithEmailPassword = createAsyncThunk(
+  "auth/signInWithEmailPassword",
+  async ({ email, password }: { email: string; password: string }, { rejectWithValue, dispatch }) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      const authInfo = {
+        name: user.displayName,
+        profilePhoto: user.photoURL,
+      
+        userID: user.uid,
+        email: user.email,
+        isAuth: true,
+      };
+      localStorage.setItem('authToken', authInfo.userID);
+      return authInfo;
+    } catch (error) {
+      if (error === "auth/invalid-credential") {
+        dispatch(setinvalidCredential(true)); // Dispatch action to set emailInUse to true
+      }
+      return rejectWithValue(error );
+    }
+  }
+);
 
 export const { setLoginForm  , setUserData, setEmailInUse, setinvalidCredential, sethasNotPasswordVerified, setForgotPassword, setweakPassword} = authSlice.actions;
 export default authSlice.reducer;
