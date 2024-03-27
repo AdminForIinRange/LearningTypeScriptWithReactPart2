@@ -24,7 +24,6 @@ import {
   signInWithGoogle,
   registerWithEmailAndPassword,
   sethasNotPasswordVerified,
-  
   setweakPassword,
 } from "../../features/auth/authSlice.tsx";
 
@@ -32,10 +31,10 @@ const SignUp: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
     isLoading,
-   
+
     errorState,
     emailInUse,
-    
+
     hasNotPasswordVerified,
 
     weakPassword,
@@ -67,10 +66,6 @@ const SignUp: React.FC = () => {
 
       console.log(password, rePassword);
     }
-  };
-
-  const handleSignInWithGoogle = () => {
-    dispatch(signInWithGoogle());
   };
 
   if (password.length > 5) {
@@ -128,7 +123,7 @@ const SignUp: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-{weakPassword ? (
+        {weakPassword ? (
           <Box
             w={"100%"}
             h={"30px"}
@@ -158,7 +153,7 @@ const SignUp: React.FC = () => {
           onChange={(e) => setRePassword(e.target.value)}
         />
 
-{hasNotPasswordVerified ? (
+        {hasNotPasswordVerified ? (
           <>
             <Box
               w={"100%"}
@@ -195,15 +190,23 @@ const SignUp: React.FC = () => {
         </HStack>
 
         <HStack mt={"15px"} justify={"center"} align={"center"} mb={"20px"}>
-          <Button colorScheme="gray" w={"20%"}>
+          <Button
+            onClick={() => {
+              dispatch(signInWithGoogle());
+            }}
+            colorScheme="gray"
+            w={"20%"}
+          >
             <GoogleIcon fontSize={"xl"} />
           </Button>
           {isLoading && (
             <Progress p={"0px"} m={"0px"} size="xs" isIndeterminate />
           )}
-             <Text color="RED " fontSize={"10px"}> {errorState && errorState.message} </Text>
+          <Text color="RED " fontSize={"10px"}>
+            {" "}
+            {errorState && errorState.message}{" "}
+          </Text>
         </HStack>
-        
       </form>
     </>
   );

@@ -16,7 +16,7 @@ import ForgotPass from './AuthModal/ForgotPass.tsx';
 const Login : React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-     isLoading, invalidCredential, forgotPassword, errorState
+     isLoading, invalidCredential, errorState
   } = useSelector((state: RootState) => state.auth);
 
 
