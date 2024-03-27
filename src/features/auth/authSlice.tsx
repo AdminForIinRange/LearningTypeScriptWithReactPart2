@@ -3,36 +3,37 @@ import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPass
 import { auth, provider } from "../../config/firebase";
 
 interface AuthStateInterface {
-  LoginForm?: boolean;
-  user?: {
-    name: string,
-    profilePhoto: string,
-    userID: string,
-    isAuth: boolean,
-  } | null;
-  isLoading?: boolean;
-  error?: {message: string} | null;
-  emailInUse?: boolean;
-  invalidCredential?: boolean;
-  hasNotPasswordVerified?: boolean;
-  forgotPassword?: boolean;
-  weakPassword?: boolean;
+  LoginForm: boolean;
+  user: userDataInterface | null; // Change made here
+  isLoading: boolean;
+  error: {message: string} | null;
+  emailInUse: boolean;
+  invalidCredential: boolean;
+  hasNotPasswordVerified: boolean;
+  forgotPassword: boolean;
+  weakPassword: boolean;
+}
+
+interface userDataInterface {
+  name: string | null;
+  profilePhoto: string | null;
+  userID: string | null;
+  isAuth: boolean | null;
+  email: string | null;
+  
 }
 
 const initialState: AuthStateInterface = {
   LoginForm: true,
-  user: null,
+  user: null, // Change made here
   isLoading: false,
-  error: null,
+  error:{message: ''},
   emailInUse: false,
   invalidCredential: false,
   hasNotPasswordVerified: false,
   forgotPassword: false,
   weakPassword: false
 };
-
-
-
 
 const authSlice = createSlice({
   name: "auth",
@@ -41,9 +42,49 @@ const authSlice = createSlice({
     setLoginForm: (state, action: PayloadAction<boolean>) => {
       state.LoginForm = action.payload;
     },
+    setEmailInUse: (state, action: PayloadAction<boolean>) => {
+      state.emailInUse = action.payload;
+    },
+    setinvalidCredential: (state, action: PayloadAction<boolean>) =>{
+      state.invalidCredential = action.payload;
+    },
+    sethasNotPasswordVerified: (state, action: PayloadAction<boolean>) => {
+      state.hasNotPasswordVerified = action.payload;
+    },
+    setForgotPassword : (state, action: PayloadAction<boolean>) => {
+      state.forgotPassword = action.payload;
+    },
+    setUserData: (state, action : PayloadAction<userDataInterface | null>) => { // Change made here
+      state.user = action.payload;
+    },
+    setweakPassword: (state, action : PayloadAction<boolean>) => {
+      state.weakPassword = action.payload;
+    },    
+  },
+  extraReducers: (builder) => {
+    builder
+    .addCase(signInWithGoogle.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(signInWithGoogle.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = {
+        name: action.payload.name,
+        profilePhoto: action.payload.profilePhoto,
+        userID: action.payload.userID,
+        email: action.payload.email,
+        isAuth: action.payload.isAuth,
+      };
+      state.error = null;
+    })
+    .addCase(signInWithGoogle.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error ={
+        message: action.error.message || "Something went wrong",
+      }
+    })
   },
 });
-
 
 export const signInWithGoogle = createAsyncThunk(
   "auth/signInWithGoogle",
@@ -51,6 +92,8 @@ export const signInWithGoogle = createAsyncThunk(
     try {
       const results = await signInWithPopup(auth, provider);
       const authInfo = {
+        name: results.user.displayName,
+        profilePhoto: results.user.photoURL,
         userID: results.user.uid,
         email: results.user.email,
         isAuth: true,
@@ -62,7 +105,6 @@ export const signInWithGoogle = createAsyncThunk(
     }
   }
 );
-
 
 export const { setLoginForm } = authSlice.actions;
 export default authSlice.reducer;

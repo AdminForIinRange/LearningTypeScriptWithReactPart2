@@ -53,7 +53,7 @@ const Login : React.FC = () => {
             </HStack>
 
             <HStack mt={"15px"} justify={"center"} align={"center"} mb={"20px"}>
-              <Button colorScheme="gray" w={"20%"}>
+              <Button  onClick={() => dispatch(signInWithGoogle())} colorScheme="gray" w={"20%"}>
                 <GoogleIcon fontSize={"xl"} />
               </Button>
             </HStack>
