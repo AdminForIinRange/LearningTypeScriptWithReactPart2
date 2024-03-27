@@ -1,8 +1,10 @@
 import { FormLabel, Input, HStack, Checkbox, Button, Divider, Text} from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import { GoogleIcon } from '../../assets/iocns/AuthIcons'
 
 const SignUp : React.FC = () => {
+
+  
   return (
   <>
     <form onSubmit={(e) => e.preventDefault()}>

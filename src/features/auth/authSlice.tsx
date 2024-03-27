@@ -1,11 +1,34 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendPasswordResetEmail } from "firebase/auth";
+import { auth, provider } from "../../config/firebase";
 
-interface AuthState {
-  LoginForm: boolean;
+interface AuthStateInterface {
+  LoginForm?: boolean;
+  user?: {
+    name: string,
+    profilePhoto: string,
+    userID: string,
+    isAuth: boolean,
+  } | null;
+  isLoading?: boolean;
+  error?: string | null;
+  emailInUse?: boolean;
+  invalidCredential?: boolean;
+  hasNotPasswordVerified?: boolean;
+  forgotPassword?: boolean;
+  weakPassword?: boolean;
 }
 
-const initialState: AuthState = {
+const initialState: AuthStateInterface = {
   LoginForm: true,
+  user: null,
+  isLoading: false,
+  error: null,
+  emailInUse: false,
+  invalidCredential: false,
+  hasNotPasswordVerified: false,
+  forgotPassword: false,
+  weakPassword: false
 };
 
 const authSlice = createSlice({
