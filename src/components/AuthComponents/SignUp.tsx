@@ -28,21 +28,31 @@ const SignUp : React.FC = () => {
               w={"100%"}
             />
 
+<FormLabel mt={"20px"} htmlFor="password">
+              Retype password
+            </FormLabel>
+<Input
+            id="rePassword"
+            type="password"
+            required
+            autoComplete="current-password"
+            w={"100%"}
+          
+          />
+
             <HStack mt={"15px"} justify="space-between">
               <Checkbox>Remember me</Checkbox>
-              <Button variant="link" size="sm">
-                Forgot password?
-              </Button>
+              
             </HStack>
 
             <Button mt={"20px"} w={"100%"} type="submit">
-              Sign in
+              Sign Up
             </Button>
 
             <HStack mt={"20px"}>
               <Divider />
               <Text whiteSpace="nowrap" color="fg.muted">
-                Continue With
+              Sign Up With
               </Text>
               <Divider />
             </HStack>

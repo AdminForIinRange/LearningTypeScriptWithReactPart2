@@ -44,7 +44,7 @@ const Login : React.FC = () => {
             <HStack mt={"20px"}>
               <Divider />
               <Text whiteSpace="nowrap" color="fg.muted">
-                Continue With
+                Sign In With
               </Text>
               <Divider />
             </HStack>

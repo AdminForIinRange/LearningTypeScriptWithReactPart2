@@ -3,7 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import goalsReducer from "./features/goals/goalsSlice.tsx";
 
 import counterReducer from "./features/counter/counterSlice.tsx";
-// import authReducer from "./features/auth/authSlice.tsx";
+import authReducer from "./features/auth/authSlice.tsx";
 
 
 
@@ -11,7 +11,7 @@ export const store = configureStore({
   reducer: {
     goals: goalsReducer,
     counter: counterReducer,
-    // auth: authReducer,
+    auth: authReducer,
     
   },
 });

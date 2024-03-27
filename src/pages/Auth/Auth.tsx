@@ -12,13 +12,13 @@ import {
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";
 import Login from "../../components/AuthComponents/Login";
 import SignUp from "../../components/AuthComponents/SignUp";
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store.ts";
+import { setLoginForm } from "../../features/auth/authSlice.tsx";
 
 const Auth = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const {ViewLogin} =
-    useSelector((state: RootState) => state.auth);
+  const { LoginForm } = useSelector((state: RootState) => state.auth);
   return (
     <>
       <VStack w={"100%"} h={"100%"} justify={"center"} align={"center"}>
@@ -26,7 +26,26 @@ const Auth = () => {
           <Text fontSize={"60px"} fontWeight={"700"}>
             Login to your account
             <Text fontSize={"25px"} fontWeight={"300"} textAlign={"center"}>
-              Don't have an Account <Button variant={"link"} as={"span"}  fontWeight={"400"} fontSize={"25px"} color={"green"}> Sign Up</Button>
+              {LoginForm ? (
+                <Text as={"span"}>Dont Have an Account ? </Text>
+              ) : (
+                <Text as={"span"}> Already have an Account ?</Text>
+              )}{" "}
+              <Button
+                variant={"link"}
+                as={"span"}
+                fontWeight={"400"}
+                fontSize={"25px"}
+                color={"green"}
+                onClick={() => dispatch(setLoginForm(!LoginForm))}
+              >
+                {" "}
+                {LoginForm ? (
+                  <Text as={"span"}>Sign Up </Text>
+                ) : (
+                  <Text as={"span"}> Login</Text>
+                )}
+              </Button>
             </Text>
           </Text>
         </VStack>
@@ -41,9 +60,7 @@ const Auth = () => {
           boxShadow={"0 1px 8px gray"}
           align={"left"}
         >
-        { !true ?
-          <Login /> : <SignUp />}
-
+          {LoginForm ? <Login /> : <SignUp />}
         </VStack>
       </VStack>
     </> // dont forget to see firebase
