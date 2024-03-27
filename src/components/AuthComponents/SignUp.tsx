@@ -12,7 +12,8 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";
 import { AppDispatch, RootState } from "../../store.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { registerWithEmailAndPassword } from "../../features/goals/goalsSlice.tsx";
+
 const SignUp: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, user, error, emailInUse, invalidCredential , hasNotPasswordVerified, forgotPassword, weakPassword} = useSelector((state: RootState) => state.auth);
@@ -32,10 +33,17 @@ const SignUp: React.FC = () => {
     React.Dispatch<React.SetStateAction<string>>
   ] = useState<string>("");
 
-  const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signInWithEmailAndPassword(""))
+    console.log(password, rePassword);
+    if (password === rePassword) {
+      dispatch(registerWithEmailAndPassword({ email, password }));
+      dispatch(sethasNotPasswordVerified(false));
+    } else {
+      dispatch(sethasNotPasswordVerified(true));
 
+      console.log(password, rePassword);
+    }
   };
 
   return (
