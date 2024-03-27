@@ -19,9 +19,9 @@ import GoalCreation from "./pages/GoalCreation/GoalCreation.tsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-        <Route path="LoginSignup" element={<Auth />} />
+        <Route path="loginsignup" element={<Auth />} />
       <Route path="Home" element={<Home />} />
-      <Route path="Goals" element={<Goals />} />
+      <Route path="/" element={<Goals />} />
       <Route path="GoalCreation" element={<GoalCreation />} />
     </Route>
   )

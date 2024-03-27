@@ -11,11 +11,25 @@ import Login from "../../components/AuthComponents/Login";
 import SignUp from "../../components/AuthComponents/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store.ts";
-import { setLoginForm } from "../../features/auth/authSlice.tsx";
+import { setLoginForm, signOutUser } from "../../features/auth/authSlice.tsx";
+import { useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
 const Auth = () => {
+  
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { LoginForm } = useSelector((state: RootState) => state.auth);
+  const { LoginForm, user } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    } else {
+      navigate("/loginsignup");
+    }
+
+  }, [user]);
+
   return (
     <>
       <VStack w={"100%"} h={"100%"} justify={"center"} align={"center"}>
@@ -59,6 +73,7 @@ const Auth = () => {
         >
           {LoginForm ? <Login /> : <SignUp />}
         </VStack>
+
       </VStack>
     </> // dont forget to see firebase
     // read write rules

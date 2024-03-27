@@ -115,11 +115,13 @@ export const signOutUser = createAsyncThunk(
     try {
       await signOut(auth);
       localStorage.removeItem('authToken');
-      // No need to log state.user here, as it's not relevant to the functionality
+      localStorage.setItem('authToken', "");
     } catch (error) {
       return rejectWithValue(error);
     }
   }
 );
+
+
 export const { setLoginForm  , setUserData, setEmailInUse, setinvalidCredential, sethasNotPasswordVerified, setForgotPassword, setweakPassword} = authSlice.actions;
 export default authSlice.reducer;
