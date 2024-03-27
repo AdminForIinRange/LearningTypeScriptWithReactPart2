@@ -1,8 +1,15 @@
-import { createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { db } from "../../config/firebase";
 
-import { addDoc, collection, serverTimestamp, doc } from "firebase/firestore";
-
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  doc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 // Define TypeScript types
 interface GoalInterface {
   MonthlyGoalOne?: string;
@@ -17,26 +24,18 @@ interface GoalInterface {
   goalDescription?: string;
   timeEstimate?: string;
 
+  OnNavbox?: string;
+  DefineGoal?: boolean;
 
-  
-OnNavbox? : string
-DefineGoal? : boolean
-
-CompletedBarArray? : string[]
+  CompletedBarArray?: string[];
 }
 
 // Define initial state
 const initialState: GoalInterface = {
+  OnNavbox: "Lets Get Started",
 
-  OnNavbox : "Lets Get Started",
-  
-
-
-  CompletedBarArray : [],
-
-  
+  CompletedBarArray: [],
 };
-
 
 // Define slice
 const goalsSlice = createSlice({
@@ -44,19 +43,15 @@ const goalsSlice = createSlice({
   initialState,
   reducers: {
     NavboxCheck: (state, action: PayloadAction<string>) => {
-      state.OnNavbox = action.payload
+      state.OnNavbox = action.payload;
     },
     DefineGoalCheck: (state, action: PayloadAction<boolean>) => {
-      state.DefineGoal = action.payload
+      state.DefineGoal = action.payload;
     },
 
-
-    CompletedBarArrayCheck : (state, action: PayloadAction<string>) => {
-      state.CompletedBarArray?.push(action.payload)
-      
-    }
-
-
+    CompletedBarArrayCheck: (state, action: PayloadAction<string>) => {
+      state.CompletedBarArray?.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addGoals.fulfilled, () => {
@@ -76,8 +71,8 @@ export const addGoals = createAsyncThunk(
   async (goals: GoalInterface) => {
     try {
       // Retrieve user ID from local storage
-      const userId = localStorage.getItem('authToken');
-      
+      const userId = localStorage.getItem("authToken");
+
       if (!userId) {
         throw new Error("User ID not found in local storage");
       }
@@ -85,10 +80,19 @@ export const addGoals = createAsyncThunk(
       const userDocRef = doc(db, "users", userId); // Assuming your user documents are stored in a collection named "users"
       const goalsCollectionRef = collection(userDocRef, "goals");
 
-      await addDoc(goalsCollectionRef, {
-        ...goals,
-        createdAt: serverTimestamp(),
-      });
+      const goalsQuery = query(goalsCollectionRef);
+      const goalsSnapshot = await getDocs(goalsQuery);
+      const goalsCount = goalsSnapshot.size;
+
+      if (goalsCount < 11) {
+        // If the user has less than 11 entries, add the goal to the "goals" collection
+        await addDoc(goalsCollectionRef, {
+          ...goals,
+          createdAt: serverTimestamp(),
+        });
+      } else {
+        throw new Error("User has reached the maximum number of goals");
+      }
     } catch (error) {
       console.error("Error adding goals: ", error);
       throw error; // Re-throw the error to be handled by the caller
@@ -100,7 +104,7 @@ export const {
   NavboxCheck,
   DefineGoalCheck,
 
-  CompletedBarArrayCheck
+  CompletedBarArrayCheck,
 } = goalsSlice.actions;
 
 // Export reducer

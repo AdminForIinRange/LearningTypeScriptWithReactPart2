@@ -100,4 +100,3 @@ const GoalCreation: React.FC = () => {
 };
 
 export default GoalCreation;
-indescribable adding documents, per user
