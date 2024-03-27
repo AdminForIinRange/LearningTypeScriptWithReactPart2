@@ -1,9 +1,12 @@
 import { FormLabel, Input, HStack, Checkbox, Button, Divider, Text} from '@chakra-ui/react'
 import React from 'react'
 import { GoogleIcon } from '../../assets/iocns/AuthIcons'
+import { AppDispatch, RootState } from "../../store.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { signInWithGoogle } from '../../features/auth/authSlice.tsx';
 
 const Login : React.FC = () => {
-
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <>
     
@@ -37,8 +40,8 @@ const Login : React.FC = () => {
               </Button>
             </HStack>
 
-            <Button mt={"20px"} w={"100%"} type="submit">
-              Sign in
+            <Button  colorScheme="whatsapp" mt={"20px"} w={"100%"} type="submit">
+              Login
             </Button>
 
             <HStack mt={"20px"}>

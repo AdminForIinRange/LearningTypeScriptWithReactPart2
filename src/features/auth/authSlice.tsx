@@ -11,7 +11,7 @@ interface AuthStateInterface {
     isAuth: boolean,
   } | null;
   isLoading?: boolean;
-  error?: string | null;
+  error?: {message: string} | null;
   emailInUse?: boolean;
   invalidCredential?: boolean;
   hasNotPasswordVerified?: boolean;
@@ -31,6 +31,9 @@ const initialState: AuthStateInterface = {
   weakPassword: false
 };
 
+
+
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -40,6 +43,26 @@ const authSlice = createSlice({
     },
   },
 });
+
+
+export const signInWithGoogle = createAsyncThunk(
+  "auth/signInWithGoogle",
+  async (_, { rejectWithValue }) => {
+    try {
+      const results = await signInWithPopup(auth, provider);
+      const authInfo = {
+        userID: results.user.uid,
+        email: results.user.email,
+        isAuth: true,
+      };
+      localStorage.setItem('authToken', authInfo.userID);
+      return authInfo;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 
 export const { setLoginForm } = authSlice.actions;
 export default authSlice.reducer;
