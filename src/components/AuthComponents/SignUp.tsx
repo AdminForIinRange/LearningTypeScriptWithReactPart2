@@ -2,11 +2,9 @@ import { FormLabel, Input, HStack, Checkbox, Button, Divider, Text} from '@chakr
 import React from 'react'
 import { GoogleIcon } from '../../assets/iocns/AuthIcons'
 
-const Login : React.FC = () => {
-
+const SignUp : React.FC = () => {
   return (
-    <>
-    
+  <>
     <form onSubmit={(e) => e.preventDefault()}>
             <FormLabel mt={"20px"} htmlFor="email">
               {" "}
@@ -55,9 +53,8 @@ const Login : React.FC = () => {
               </Button>
             </HStack>
           </form>
-          
           </>
   )
 }
 
-export default Login
+export default SignUp

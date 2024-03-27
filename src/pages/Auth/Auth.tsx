@@ -10,7 +10,15 @@ import {
 } from "@chakra-ui/react";
 
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";
+import Login from "../../components/AuthComponents/Login";
+import SignUp from "../../components/AuthComponents/SignUp";
+import { useDispatch , useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store.ts";
+
 const Auth = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const {ViewLogin} =
+    useSelector((state: RootState) => state.auth);
   return (
     <>
       <VStack w={"100%"} h={"100%"} justify={"center"} align={"center"}>
@@ -33,54 +41,9 @@ const Auth = () => {
           boxShadow={"0 1px 8px gray"}
           align={"left"}
         >
-          <form onSubmit={(e) => e.preventDefault()}>
-            <FormLabel mt={"20px"} htmlFor="email">
-              {" "}
-              Email
-            </FormLabel>
-            <Input
-              id="email"
-              type="email"
-              w={"100%"}
-              autoComplete="current-email"
-              required
-            />
-            <FormLabel mt={"20px"} htmlFor="password">
-              password
-            </FormLabel>
-            <Input
-              id="password"
-              type="password"
-              required
-              autoComplete="current-password"
-              w={"100%"}
-            />
+        { !true ?
+          <Login /> : <SignUp />}
 
-            <HStack mt={"15px"} justify="space-between">
-              <Checkbox>Remember me</Checkbox>
-              <Button variant="link" size="sm">
-                Forgot password?
-              </Button>
-            </HStack>
-
-            <Button mt={"20px"} w={"100%"} type="submit">
-              Sign in
-            </Button>
-
-            <HStack mt={"20px"}>
-              <Divider />
-              <Text whiteSpace="nowrap" color="fg.muted">
-                Continue With
-              </Text>
-              <Divider />
-            </HStack>
-
-            <HStack mt={"15px"} justify={"center"} align={"center"} mb={"20px"}>
-              <Button colorScheme="gray" w={"20%"}>
-                <GoogleIcon fontSize={"xl"} />
-              </Button>
-            </HStack>
-          </form>
         </VStack>
       </VStack>
     </> // dont forget to see firebase
