@@ -24,6 +24,7 @@ interface GoalInterface {
   goalDescription?: string;
   timeEstimate?: string;
   OnNavbox?: string;
+
   CompletedBarArray?: string[];
 }
 
@@ -31,6 +32,7 @@ interface GoalInterface {
 const initialState: GoalInterface = {
   OnNavbox: "Lets Get Started",
   CompletedBarArray: [],
+
 };
 
 // Define slice
@@ -41,6 +43,8 @@ const goalsSlice = createSlice({
     NavboxCheck: (state, action: PayloadAction<string>) => {
       state.OnNavbox = action.payload;
     },
+    
+    
 
     CompletedBarArrayCheck: (state, action: PayloadAction<string>) => {
       if (state.CompletedBarArray) {
@@ -81,6 +85,7 @@ export const addGoals = createAsyncThunk(
           ...goals,
           createdAt: serverTimestamp(),
           userId,
+    
         });
       } else {
         throw new Error("User has reached the maximum number of goals");
