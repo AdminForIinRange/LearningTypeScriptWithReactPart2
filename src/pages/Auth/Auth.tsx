@@ -11,7 +11,7 @@ import Login from "../../components/AuthComponents/Login";
 import SignUp from "../../components/AuthComponents/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store.ts";
-import { setLoginForm } from "../../features/auth/authSlice.tsx";
+import { setLoginForm, setUserData } from "../../features/auth/authSlice.tsx";
 import { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -23,12 +23,19 @@ const Auth = () => {
 
   useEffect(() => {
     if (localStorage.getItem('authToken')) {
+      dispatch(setUserData(JSON.parse(localStorage.getItem('UserTestStorage'))));
+
       navigate("/");
     } else {
       navigate("/loginsignup");
     }
 
   }, [user, localStorage.getItem('authToken')]);
+
+
+
+
+
 
   return (
     <>

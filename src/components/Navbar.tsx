@@ -16,9 +16,18 @@ import { FaCog } from "react-icons/fa";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { GoGoal } from "react-icons/go";
 import { FaPen } from "react-icons/fa";
-export default function Navbar() {
-  const isSmallScreen = useBreakpointValue({ base: true, sm: false });
+import { AppDispatch, RootState } from "../store";
+import { useDispatch, useSelector } from "react-redux";
 
+export default function Navbar() {
+
+  const dispatch = useDispatch<AppDispatch>();
+  const isSmallScreen = useBreakpointValue({ base: true, sm: false });
+  const { user } =
+    useSelector((state: RootState) => state.auth);
+
+
+    
   return (
     <HStack
       fontFamily={"Raleway"}
@@ -31,7 +40,7 @@ export default function Navbar() {
     >
       <Avatar size={"sm"} name="" />
 <Text fontWeight={500}>
-  Anjesh B
+{user?.name}
 </Text>
       <Spacer />
       <HStack fontWeight={500}>

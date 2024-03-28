@@ -56,8 +56,10 @@ const authSlice = createSlice({
     setForgotPassword : (state, action: PayloadAction<boolean>) => {
       state.forgotPassword = action.payload;
     },
-    setUserData: (state, action : PayloadAction<userDataInterface | null>) => { // Change made here
+    setUserData: (state, action: PayloadAction<userDataInterface | null>) => {
       state.user = action.payload;
+      // Retrieve user data from localStorage and update state if available
+    
     },
     setweakPassword: (state, action : PayloadAction<boolean>) => {
       state.weakPassword = action.payload;
@@ -276,6 +278,7 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
 
 
 export const { setLoginForm  , setUserData, setEmailInUse, setinvalidCredential, sethasNotPasswordVerified, setForgotPassword, setweakPassword} = authSlice.actions;

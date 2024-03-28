@@ -25,7 +25,7 @@ interface GoalInterface {
   timeEstimate?: string;
 
   OnNavbox?: string;
-  DefineGoal?: boolean;
+
 
   CompletedBarArray?: string[];
 }
@@ -44,9 +44,6 @@ const goalsSlice = createSlice({
   reducers: {
     NavboxCheck: (state, action: PayloadAction<string>) => {
       state.OnNavbox = action.payload;
-    },
-    DefineGoalCheck: (state, action: PayloadAction<boolean>) => {
-      state.DefineGoal = action.payload;
     },
 
     CompletedBarArrayCheck: (state, action: PayloadAction<string>) => {
@@ -74,7 +71,7 @@ export const addGoals = createAsyncThunk(
       const userId = localStorage.getItem("authToken");
 
       if (!userId) {
-        throw new Error("User ID not found in local storage");
+        throw new Error("User ID not found");
       }
 
       const userDocRef = doc(db, "users", userId); // Assuming your user documents are stored in a collection named "users"
@@ -102,7 +99,7 @@ export const addGoals = createAsyncThunk(
 // Export actions
 export const {
   NavboxCheck,
-  DefineGoalCheck,
+
 
   CompletedBarArrayCheck,
 } = goalsSlice.actions;
