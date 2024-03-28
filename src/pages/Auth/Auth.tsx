@@ -65,8 +65,7 @@ const Auth = () => {
           {LoginForm ? <Login /> : <SignUp />}
         </VStack>
       </VStack>
-    </> // dont forget to see firebase
-    // read write rules
+    </> 
   );
 };
 

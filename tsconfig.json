@@ -5,7 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "useUnknownInCatchVariables": false,
+    "useUnknownInCatchVariables": false, //great for debugging/try catch error unknown
 
     /* Bundler mode */
     "moduleResolution": "bundler",
