@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import Navbar from "../components/Navbar.tsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -18,6 +18,18 @@ export default function RootLayout() {
   //     navigate("/loginsignup");
   //   }
   // }, [user, localStorage.getItem("authToken")]);
+
+
+const [allow, setNav] = useState(false)
+
+  useEffect(() => {
+   if (localStorage.getItem("authToken")) {
+
+
+   }
+
+
+  },[localStorage.getItem("authToken")]);
 
   return (
     <>
