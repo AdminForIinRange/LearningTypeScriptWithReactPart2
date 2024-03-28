@@ -19,19 +19,15 @@ export default function RootLayout() {
   //   }
   // }, [user, localStorage.getItem("authToken")]);
 
-
-const [Nav, setNav] = useState(false)
+  const [Nav, setNav] = useState(false);
 
   useEffect(() => {
-   if (localStorage.getItem("authToken")) {
-    setNav(true)
-
-   } else {
-    setNav(false)
-   }
-
-
-  },[localStorage.getItem("authToken")]);
+    if (localStorage.getItem("authToken")) {
+      setNav(true);
+    } else {
+      setNav(false);
+    }
+  }, [localStorage.getItem("authToken")]);
 
   return (
     <>

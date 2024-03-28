@@ -97,20 +97,35 @@ const Goals: React.FC = () => {
           updatedGoals.push({ id: doc.id, ...doc.data() } as Goal);
         });
         setGoals(updatedGoals);
-        updatedGoals.forEach(({ goalDescription, MonthlyGoalOne, MonthlyGoalTwo, MonthlyGoalThree, WeeklyGoalOne, WeeklyGoalTwo, WeeklyGoalThree, DailyGoalOne, DailyGoalTwo, DailyGoalThree, timeEstimate }) => {
-          if (goalDescription) dispatch(setGoalDescription(goalDescription));
-          if (MonthlyGoalOne) dispatch(setMonthlyGoalOne(MonthlyGoalOne));
-          if (MonthlyGoalTwo) dispatch(setMonthlyGoalTwo(MonthlyGoalTwo));
-          if (MonthlyGoalThree) dispatch(setMonthlyGoalThree(MonthlyGoalThree));
-          if (WeeklyGoalOne) dispatch(setWeeklyGoalOne(WeeklyGoalOne));
-          if (WeeklyGoalTwo) dispatch(setWeeklyGoalTwo(WeeklyGoalTwo));
-          if (WeeklyGoalThree) dispatch(setWeeklyGoalThree(WeeklyGoalThree));
-          if (DailyGoalOne) dispatch(setDailyGoalOne(DailyGoalOne));
-          if (DailyGoalTwo) dispatch(setDailyGoalTwo(DailyGoalTwo));
-          if (DailyGoalThree) dispatch(setDailyGoalThree(DailyGoalThree));
-          if (timeEstimate) dispatch(setTimeEstimate(timeEstimate));
-        });
-        
+        updatedGoals.forEach(
+          ({
+            goalDescription,
+            MonthlyGoalOne,
+            MonthlyGoalTwo,
+            MonthlyGoalThree,
+            WeeklyGoalOne,
+            WeeklyGoalTwo,
+            WeeklyGoalThree,
+            DailyGoalOne,
+            DailyGoalTwo,
+            DailyGoalThree,
+            timeEstimate,
+          }) => {
+            if (goalDescription) dispatch(setGoalDescription(goalDescription));
+            if (MonthlyGoalOne) dispatch(setMonthlyGoalOne(MonthlyGoalOne));
+            if (MonthlyGoalTwo) dispatch(setMonthlyGoalTwo(MonthlyGoalTwo));
+            if (MonthlyGoalThree)
+              dispatch(setMonthlyGoalThree(MonthlyGoalThree));
+            if (WeeklyGoalOne) dispatch(setWeeklyGoalOne(WeeklyGoalOne));
+            if (WeeklyGoalTwo) dispatch(setWeeklyGoalTwo(WeeklyGoalTwo));
+            if (WeeklyGoalThree) dispatch(setWeeklyGoalThree(WeeklyGoalThree));
+            if (DailyGoalOne) dispatch(setDailyGoalOne(DailyGoalOne));
+            if (DailyGoalTwo) dispatch(setDailyGoalTwo(DailyGoalTwo));
+            if (DailyGoalThree) dispatch(setDailyGoalThree(DailyGoalThree));
+            if (timeEstimate) dispatch(setTimeEstimate(timeEstimate));
+          }
+        );
+
         console.log("Goals updated:", updatedGoals);
       });
       return unsubscribe;
@@ -132,9 +147,8 @@ const Goals: React.FC = () => {
   return (
     <div>
       <VStack>
-       
-          <Text>{goalDescription}</Text>
-      
+        <Text>{goalDescription}</Text>
+
         <Tabs variant="enclosed">
           <TabList>
             <Tab>Daily Tasks</Tab>

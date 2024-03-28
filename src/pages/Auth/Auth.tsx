@@ -1,11 +1,4 @@
-import {
-
-  Text,
-  VStack,
-
-  Button,
-
-} from "@chakra-ui/react";
+import { Text, VStack, Button } from "@chakra-ui/react";
 
 import Login from "../../components/AuthComponents/Login";
 import SignUp from "../../components/AuthComponents/SignUp";
@@ -16,26 +9,17 @@ import { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 const Auth = () => {
-  
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { LoginForm, user } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    if (localStorage.getItem('authToken')) {
-     
-
+    if (localStorage.getItem("authToken")) {
       navigate("/");
     } else {
       navigate("/loginsignup");
     }
-
-  }, [user, localStorage.getItem('authToken')]);
-
-
-
-
-
+  }, [user, localStorage.getItem("authToken")]);
 
   return (
     <>
@@ -80,7 +64,6 @@ const Auth = () => {
         >
           {LoginForm ? <Login /> : <SignUp />}
         </VStack>
-
       </VStack>
     </> // dont forget to see firebase
     // read write rules
