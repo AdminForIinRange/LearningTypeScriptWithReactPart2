@@ -4,7 +4,7 @@ import Login from "../../components/AuthComponents/Login";
 import SignUp from "../../components/AuthComponents/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store.ts";
-import { setLoginForm, setUserData } from "../../features/auth/authSlice.tsx";
+import { setLoginForm } from "../../features/auth/authSlice.tsx";
 import { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";

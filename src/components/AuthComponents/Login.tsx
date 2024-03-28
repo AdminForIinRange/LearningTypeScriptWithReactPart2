@@ -7,7 +7,7 @@ import {
   Divider,
   Text,
   Box,
-  Progress,
+
 } from "@chakra-ui/react";
 import React, { FormEvent, useState } from "react";
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";
@@ -25,7 +25,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, invalidCredential } = useSelector(
+  const { invalidCredential } = useSelector(
     (state: RootState) => state.auth,
   );
 

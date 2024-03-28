@@ -7,7 +7,7 @@ import {
   Divider,
   Text,
   Box,
-  Progress,
+
 } from "@chakra-ui/react";
 import React, { FormEvent, useState } from "react";
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";
@@ -24,7 +24,7 @@ import {
 const SignUp: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-    isLoading,
+
 
     emailInUse,
 
