@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../config/firebase";
-import { collection, query, orderBy, onSnapshot, QuerySnapshot, doc, where } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, QuerySnapshot, doc, where, getDocs } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
@@ -16,9 +16,8 @@ interface Goal {
   DailyGoalThree?: string;
   goalDescription?: string;
   timeEstimate?: string;
-id: string;
-
-  createdAt?: string; // Add this line
+  id: string;
+  createdAt?: string;
 }
 
 const Goals: React.FC = () => {
@@ -28,56 +27,54 @@ const Goals: React.FC = () => {
   useEffect(() => {
     if (!userId) {
       console.log("UserId not found");
-      return; // Exit early if userId is not available
+      return;
     }
 
-    const unsubscribe = getGoals(userId); // Pass userId to getGoals
+    const unsubscribe = getGoals(userId);
     return () => {
       if (unsubscribe) unsubscribe();
     };
   }, [userId]);
 
-  const getGoals = (userId: string) => {
+  const getGoals = (userId: string | null) => {
     try {
-      const userDocRef = doc(db, "users", userId);
-      const userGoalsCollectionRef = collection(userDocRef, "goals");
-      const queryGoals = query(
-        userGoalsCollectionRef,
-        where("userI", "==", userId),
-        orderBy("createdAt")
-      );
-      console.log("Query Goals:", queryGoals); // Add this line
-  
-      return onSnapshot(queryGoals, (snapshot: QuerySnapshot) => {
-        const docs: Goal[] = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          const id = doc.id;
-          console.log("Document Data:", data); // Add this line
-          docs.push({
-            ...data, id,
-         
-          });
+      if (!userId) return;
+
+      const userDocRef = collection(db, 'goals');
+      const q = query(userDocRef, where('userId', '==', userId));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const updatedGoals: Goal[] = [];
+        querySnapshot.forEach((doc) => {
+          updatedGoals.push({ id: doc.id, ...doc.data() } as Goal);
         });
-        console.log("Retrieved Goals:", docs); // Add this line
-        setGoals(docs);
+        setGoals(updatedGoals);
+        console.log("Goals updated:", updatedGoals);
       });
+      return unsubscribe;
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error fetching goals:", error);
     }
   };
   
-
   return (
     <div>
-
-      {goals.map((goal) => (
+        {goals.map(({  ...goal }) => (
         <div key={goal.id}>
-          <p>Monthly Goal One: {goal.goalDescription}</p>
-          <p>Monthly Goal Two: {goal.goalDescription}</p>
-   
+          <p>  {goal.MonthlyGoalOne}</p>
+          <p> {goal.MonthlyGoalTwo}</p>
+          <p> {goal.MonthlyGoalThree}</p>
+          <p> {goal.WeeklyGoalOne}</p>
+          <p> {goal.WeeklyGoalTwo}</p>
+          <p> {goal.WeeklyGoalThree}</p>
+          <p> {goal.DailyGoalOne}</p>
+          <p> {goal.DailyGoalTwo}</p>
+          <p> {goal.DailyGoalThree}</p>
+          <p> {goal.goalDescription}</p>
+          <p> {goal.timeEstimate}</p>
+          {/* Add other properties as needed */}
         </div>
       ))}
+
     </div>
   );
 };
