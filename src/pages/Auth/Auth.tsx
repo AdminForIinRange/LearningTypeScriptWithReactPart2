@@ -23,7 +23,7 @@ const Auth = () => {
 
   useEffect(() => {
     if (localStorage.getItem('authToken')) {
-      dispatch(setUserData(JSON.parse(localStorage.getItem('UserTestStorage'))));
+     
 
       navigate("/");
     } else {

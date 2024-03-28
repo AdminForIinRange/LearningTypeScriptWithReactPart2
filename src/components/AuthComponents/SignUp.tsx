@@ -198,9 +198,6 @@ const SignUp: React.FC = () => {
           >
             <GoogleIcon fontSize={"xl"} />
           </Button>
-          {isLoading && (
-            <Progress p={"0px"} m={"0px"} size="xs" isIndeterminate />
-          )}
          
         </HStack>
       </form>
