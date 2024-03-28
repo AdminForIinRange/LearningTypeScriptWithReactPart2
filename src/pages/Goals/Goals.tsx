@@ -1,113 +1,85 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../../config/firebase";
-import { collection, query, where, orderBy, onSnapshot, QuerySnapshot, doc } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, QuerySnapshot, doc, where } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 interface Goal {
-  MonthlyGoalOne: ReactNode;
-  MonthlyGoalTwo: ReactNode;
-  MonthlyGoalThree: ReactNode;
-  WeeklyGoalOne: ReactNode;
-  WeeklyGoalTwo: ReactNode;
-  WeeklyGoalThree: ReactNode;
-  DailyGoalOne: ReactNode;
-  DailyGoalTwo: ReactNode;
-  DailyGoalThree: ReactNode;
-  goalDescription: ReactNode;
-  timeEstimate: ReactNode;
-  id: string;
-  // Define your goal properties here
+  MonthlyGoalOne?: string;
+  MonthlyGoalTwo?: string;
+  MonthlyGoalThree?: string;
+  WeeklyGoalOne?: string;
+  WeeklyGoalTwo?: string;
+  WeeklyGoalThree?: string;
+  DailyGoalOne?: string;
+  DailyGoalTwo?: string;
+  DailyGoalThree?: string;
+  goalDescription?: string;
+  timeEstimate?: string;
+id: string;
+
+  createdAt?: string; // Add this line
 }
 
 const Goals: React.FC = () => {
-
-
-  const userID = localStorage.getItem('authToken');
-  const goalCollectionRef = collection(db, "goals");
+  const userId = localStorage.getItem('authToken');
   const [goals, setGoals] = useState<Goal[]>([]);
-  const [unsubscribe, setUnsubscribe] = useState<(() => void) | null>(null);
 
   useEffect(() => {
-    const unsubscribeFunc = getGoals();
-    setUnsubscribe(unsubscribeFunc);
-    return () => {
-      if (unsubscribeFunc) unsubscribeFunc();
-    };
-  }, [userID]); // Run effect whenever userID changes
+    if (!userId) {
+      console.log("UserId not found");
+      return; // Exit early if userId is not available
+    }
 
-  const getGoals = () => {
+    const unsubscribe = getGoals(userId); // Pass userId to getGoals
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
+  }, [userId]);
+
+  const getGoals = (userId: string) => {
     try {
-      if (!userID) {
-        console.log("UserID not found");
-        return;
-      }
-  
-      const userDocRef = doc(db, "users", userID);
+      const userDocRef = doc(db, "users", userId);
       const userGoalsCollectionRef = collection(userDocRef, "goals");
-  
-      const querygoal = query(
+      const queryGoals = query(
         userGoalsCollectionRef,
+        where("userI", "==", userId),
         orderBy("createdAt")
       );
+      console.log("Query Goals:", queryGoals); // Add this line
   
-      const unsubscribeFunc = onSnapshot(querygoal, (snapshot: QuerySnapshot) => {
-        console.log("Snapshot received:", snapshot);
+      return onSnapshot(queryGoals, (snapshot: QuerySnapshot) => {
         const docs: Goal[] = [];
-  
         snapshot.forEach((doc) => {
           const data = doc.data();
           const id = doc.id;
-          const goal: Goal = {
-            id: id,
-            MonthlyGoalOne: data.MonthlyGoalOne || "",
-            MonthlyGoalTwo: data.MonthlyGoalTwo || "",
-            MonthlyGoalThree: data.MonthlyGoalThree || "",
-            WeeklyGoalOne: data.WeeklyGoalOne || "",
-            WeeklyGoalTwo: data.WeeklyGoalTwo || "",
-            WeeklyGoalThree: data.WeeklyGoalThree || "",
-            DailyGoalOne: data.DailyGoalOne || "",
-            DailyGoalTwo: data.DailyGoalTwo || "",
-            DailyGoalThree: data.DailyGoalThree || "",
-            goalDescription: data.goalDescription || "",
-            timeEstimate: data.timeEstimate || "",
-          };
-          docs.push(goal);
+          console.log("Document Data:", data); // Add this line
+          docs.push({
+            ...data, id,
+         
+          });
         });
-      
+        console.log("Retrieved Goals:", docs); // Add this line
         setGoals(docs);
       });
-  
-      return unsubscribeFunc;
     } catch (error) {
       console.log("Error:", error);
-      return null;
     }
   };
   
 
   return (
-    <div>d
-      
+    <div>
+
       {goals.map((goal) => (
         <div key={goal.id}>
-          <p>Monthly Goal One: {goal.MonthlyGoalOne}</p>
-          <p>Monthly Goal Two: {goal.MonthlyGoalTwo}</p>
-          <p>Monthly Goal Three: {goal.MonthlyGoalThree}</p>
-          <p>Weekly Goal One: {goal.WeeklyGoalOne}</p>
-          <p>Weekly Goal Two: {goal.WeeklyGoalTwo}</p>
-          <p>Weekly Goal Three: {goal.WeeklyGoalThree}</p>
-          <p>Daily Goal One: {goal.DailyGoalOne}</p>
-          <p>Daily Goal Two: {goal.DailyGoalTwo}</p>
-          <p>Daily Goal Three: {goal.DailyGoalThree}</p>
-          <p>Goal Description: {goal.goalDescription}</p>
-          <p>Time Estimate: {goal.timeEstimate}</p>
-          {/* Add other properties as needed */}
+          <p>Monthly Goal One: {goal.goalDescription}</p>
+          <p>Monthly Goal Two: {goal.goalDescription}</p>
+   
         </div>
       ))}
     </div>
   );
-  
 };
 
 export default Goals;

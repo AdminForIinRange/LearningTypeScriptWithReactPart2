@@ -2,7 +2,10 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { db } from "../../config/firebase";
 
 import {
+  CollectionReference,
+  DocumentData,
   addDoc,
+  collection,
   doc,
   serverTimestamp,
 } from "firebase/firestore";
@@ -69,13 +72,15 @@ export const addGoals = createAsyncThunk(
         throw new Error("User ID not found");
       }
 
-      const userDocRef = doc(db, "users", userId);
+      const userDocRef: CollectionReference<DocumentData> = collection(db, 'goals');
+
 
       // Check if userDocRef exists
       if (userDocRef) {
         await addDoc(userDocRef, {
           ...goals,
           createdAt: serverTimestamp(),
+          userId,
         });
       } else {
         throw new Error("User has reached the maximum number of goals");
