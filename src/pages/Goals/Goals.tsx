@@ -3,9 +3,9 @@ import { db } from "../../config/firebase";
 import {
   collection,
   query,
-  orderBy,
+
   onSnapshot,
-  QuerySnapshot,
+
   doc,
   where,
   updateDoc,
@@ -21,7 +21,7 @@ import {
   TabPanel,
   VStack,
   Text,
-  Button,
+
 } from "@chakra-ui/react";
 import {
   setMonthlyGoalOne,
@@ -59,16 +59,7 @@ const Goals: React.FC = () => {
 
   const {
     goalDescription,
-    timeEstimate,
-    MonthlyGoalOne,
-    MonthlyGoalTwo,
-    MonthlyGoalThree,
-    WeeklyGoalOne,
-    WeeklyGoalTwo,
-    WeeklyGoalThree,
-    DailyGoalOne,
-    DailyGoalTwo,
-    DailyGoalThree,
+    
   } = useSelector((state: RootState) => state.main);
   const userId = localStorage.getItem("authToken");
   const [goals, setGoals] = useState<Goal[]>([]);
