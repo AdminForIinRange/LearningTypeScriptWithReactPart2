@@ -5,6 +5,7 @@ import goalsReducer from "./features/goals/goalsSlice.tsx";
 import counterReducer from "./features/counter/counterSlice.tsx";
 import authReducer from "./features/auth/authSlice.tsx";
 
+import mainReducer from "./features/main/mainSlice.tsx";
 
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     goals: goalsReducer,
     counter: counterReducer,
     auth: authReducer,
+    main: mainReducer,
     
   },
 });

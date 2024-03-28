@@ -3,6 +3,7 @@ import { db } from "../../config/firebase";
 import { collection, query, orderBy, onSnapshot, QuerySnapshot, doc, where, updateDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { HStack , Tabs, TabList, TabPanels, Tab, TabPanel, VStack, Text, Button} from "@chakra-ui/react";
 
 interface Goal {
   MonthlyGoalOne?: string;
@@ -69,6 +70,52 @@ const Goals: React.FC = () => {
 
   return (
     <div>
+
+      <VStack>
+
+<Text fontSize={"40px"}>
+{goals.map((goal) => (
+        <Text key={goal.id}>
+          {goal.goalDescription}
+        </Text>
+      ))}
+</Text>
+
+
+      <Tabs variant='enclosed'>
+  <TabList>
+    <Tab>Daily Tasks</Tab>
+    <Tab>Weekly Tasks</Tab>
+    <Tab>Monthly Tasks</Tab>
+
+  </TabList>
+  <TabPanels>
+    <TabPanel>
+x
+
+    </TabPanel>
+    <TabPanel>
+      <p>2!</p>
+    </TabPanel>
+    <TabPanel>
+      <p>3!</p>
+    </TabPanel>
+ 
+  </TabPanels>
+</Tabs>
+      </VStack>
+
+      <HStack>
+        
+      </HStack>
+
+
+
+
+
+
+
+
       {goals.map(({ MonthlyGoalOne, MonthlyGoalTwo, MonthlyGoalThree, WeeklyGoalOne, WeeklyGoalTwo, WeeklyGoalThree, DailyGoalOne, DailyGoalTwo, DailyGoalThree, goalDescription, timeEstimate, id, isChecked })  => (
         <div key={id}>
           <p style={{ textDecoration: isChecked ? 'line-through' : 'none' }}>{MonthlyGoalOne}</p>
