@@ -3,13 +3,10 @@ import { db } from "../../config/firebase";
 
 import {
   addDoc,
-  collection,
-  serverTimestamp,
   doc,
-  getDocs,
-  query,
-
+  serverTimestamp,
 } from "firebase/firestore";
+
 // Define TypeScript types
 interface GoalInterface {
   MonthlyGoalOne?: string;
@@ -23,17 +20,13 @@ interface GoalInterface {
   DailyGoalThree?: string;
   goalDescription?: string;
   timeEstimate?: string;
-
   OnNavbox?: string;
-
-
   CompletedBarArray?: string[];
 }
 
 // Define initial state
 const initialState: GoalInterface = {
   OnNavbox: "Lets Get Started",
-
   CompletedBarArray: [],
 };
 
@@ -47,7 +40,9 @@ const goalsSlice = createSlice({
     },
 
     CompletedBarArrayCheck: (state, action: PayloadAction<string>) => {
-      state.CompletedBarArray?.push(action.payload);
+      if (state.CompletedBarArray) {
+        state.CompletedBarArray.push(action.payload);
+      }
     },
   },
   extraReducers: (builder) => {
@@ -74,16 +69,11 @@ export const addGoals = createAsyncThunk(
         throw new Error("User ID not found");
       }
 
-      const userDocRef = doc(db, "users", userId); // Assuming your user documents are stored in a collection named "users"
-      const goalsCollectionRef = collection(userDocRef, "goals");
+      const userDocRef = doc(db, "users", userId);
 
-      const goalsQuery = query(goalsCollectionRef);
-      const goalsSnapshot = await getDocs(goalsQuery);
-      const goalsCount = goalsSnapshot.size;
-
-      if (goalsCount < 11) {
-        // If the user has less than 11 entries, add the goal to the "goals" collection
-        await addDoc(goalsCollectionRef, {
+      // Check if userDocRef exists
+      if (userDocRef) {
+        await addDoc(userDocRef, {
           ...goals,
           createdAt: serverTimestamp(),
         });
@@ -96,13 +86,9 @@ export const addGoals = createAsyncThunk(
     }
   }
 );
+
 // Export actions
-export const {
-  NavboxCheck,
-
-
-  CompletedBarArrayCheck,
-} = goalsSlice.actions;
+export const { NavboxCheck, CompletedBarArrayCheck } = goalsSlice.actions;
 
 // Export reducer
 export default goalsSlice.reducer;
