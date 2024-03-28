@@ -20,12 +20,14 @@ export default function RootLayout() {
   // }, [user, localStorage.getItem("authToken")]);
 
 
-const [allow, setNav] = useState(false)
+const [Nav, setNav] = useState(false)
 
   useEffect(() => {
    if (localStorage.getItem("authToken")) {
+    setNav(true)
 
-
+   } else {
+    setNav(false)
    }
 
 
@@ -33,7 +35,7 @@ const [allow, setNav] = useState(false)
 
   return (
     <>
-      {localStorage.getItem("authToken") ? <Navbar /> : null}
+      {Nav ? <Navbar /> : null}
 
       <Outlet />
     </>
