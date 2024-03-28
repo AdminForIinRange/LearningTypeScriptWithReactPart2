@@ -9,12 +9,7 @@ import {
   Box,
   Progress,
 } from "@chakra-ui/react";
-import React, {
-
-  FormEvent,
-
-  useState,
-} from "react";
+import React, { FormEvent, useState } from "react";
 import { GoogleIcon } from "../../assets/iocns/AuthIcons";
 import { AppDispatch, RootState } from "../../store.ts";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,7 +26,6 @@ const SignUp: React.FC = () => {
   const {
     isLoading,
 
-    
     emailInUse,
 
     hasNotPasswordVerified,
@@ -41,17 +35,17 @@ const SignUp: React.FC = () => {
 
   const [email, setEmail]: [
     string,
-    React.Dispatch<React.SetStateAction<string>>
+    React.Dispatch<React.SetStateAction<string>>,
   ] = useState<string>("");
 
   const [password, setPassword]: [
     string,
-    React.Dispatch<React.SetStateAction<string>>
+    React.Dispatch<React.SetStateAction<string>>,
   ] = useState<string>("");
 
   const [rePassword, setRePassword]: [
     string,
-    React.Dispatch<React.SetStateAction<string>>
+    React.Dispatch<React.SetStateAction<string>>,
   ] = useState<string>("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -198,7 +192,6 @@ const SignUp: React.FC = () => {
           >
             <GoogleIcon fontSize={"xl"} />
           </Button>
-         
         </HStack>
       </form>
     </>

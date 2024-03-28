@@ -1,7 +1,7 @@
-import { createIcon } from '@chakra-ui/react'
+import { createIcon } from "@chakra-ui/react";
 
 export const GoogleIcon = createIcon({
-  displayName: 'GoogleIcon',
+  displayName: "GoogleIcon",
   path: (
     <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
       <path
@@ -22,4 +22,4 @@ export const GoogleIcon = createIcon({
       />
     </g>
   ),
-})
+});

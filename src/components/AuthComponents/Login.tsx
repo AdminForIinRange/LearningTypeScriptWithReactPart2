@@ -26,22 +26,22 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, invalidCredential } = useSelector(
-    (state: RootState) => state.auth
+    (state: RootState) => state.auth,
   );
 
   const [email, setEmail]: [
     string,
-    React.Dispatch<React.SetStateAction<string>>
+    React.Dispatch<React.SetStateAction<string>>,
   ] = useState<string>("");
 
   const [password, setPassword]: [
     string,
-    React.Dispatch<React.SetStateAction<string>>
+    React.Dispatch<React.SetStateAction<string>>,
   ] = useState<string>("");
 
   const [showPassword, setShowPassword]: [
     boolean,
-    React.Dispatch<React.SetStateAction<boolean>>
+    React.Dispatch<React.SetStateAction<boolean>>,
   ] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -154,8 +154,6 @@ const Login: React.FC = () => {
           >
             <GoogleIcon fontSize={"xl"} />
           </Button>
-  
-          
         </HStack>
       </form>
     </>

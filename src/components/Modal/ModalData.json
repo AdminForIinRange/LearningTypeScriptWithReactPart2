@@ -4,22 +4,18 @@
       {
         "value": "Goal",
         "title": "Define Your Goal"
-       
       },
       {
         "value": "Monthly",
         "title": "Monthly targets"
-       
       },
       {
         "value": "Weekly",
         "title": "Weekly targets"
-       
       },
       {
         "value": "Daily",
         "title": "Daily targets"
-       
       }
     ]
   }

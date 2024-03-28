@@ -31,7 +31,7 @@ const counterSlice = createSlice({
       (state, action: PayloadAction<number>) => {
         state.value += action.payload;
         console.log("Done");
-      }
+      },
     );
     builder.addCase(incrementAsync.pending, () => {
       console.log("pending");
@@ -44,7 +44,7 @@ export const incrementAsync = createAsyncThunk(
   async (amount: number) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     return amount;
-  }
+  },
 );
 
 export const { add, take, amount } = counterSlice.actions;

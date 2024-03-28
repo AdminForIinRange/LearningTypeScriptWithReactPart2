@@ -4,7 +4,6 @@ import {
   useBreakpointValue,
   Text,
   MenuButton,
-
   Menu,
   Avatar,
   MenuList,
@@ -20,14 +19,10 @@ import { AppDispatch, RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Navbar() {
-
   const dispatch = useDispatch<AppDispatch>();
   const isSmallScreen = useBreakpointValue({ base: true, sm: false });
-  const { user } =
-    useSelector((state: RootState) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
 
-
-    
   return (
     <HStack
       fontFamily={"Raleway"}
@@ -39,9 +34,7 @@ export default function Navbar() {
       px={20}
     >
       <Avatar size={"sm"} name="" />
-<Text fontWeight={500}>
-{user?.name}
-</Text>
+      <Text fontWeight={500}>{user?.name}</Text>
       <Spacer />
       <HStack fontWeight={500}>
         {isSmallScreen ? ( //custom comp and pass as chlidren tsx
@@ -66,8 +59,9 @@ export default function Navbar() {
               </MenuItem>
             </MenuList>
           </Menu>
-        ) : ( //custom comp and pass as chlidren as well tsx
-          <ButtonGroup gap={"25px"}> 
+        ) : (
+          //custom comp and pass as chlidren as well tsx
+          <ButtonGroup gap={"25px"}>
             <Button variant={"link"} color={"balck"} leftIcon={<FaPen />}>
               <Text color={"BLACK"}>Create</Text>
             </Button>

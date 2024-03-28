@@ -123,7 +123,7 @@ const Goals: React.FC = () => {
             if (DailyGoalTwo) dispatch(setDailyGoalTwo(DailyGoalTwo));
             if (DailyGoalThree) dispatch(setDailyGoalThree(DailyGoalThree));
             if (timeEstimate) dispatch(setTimeEstimate(timeEstimate));
-          }
+          },
         );
 
         console.log("Goals updated:", updatedGoals);
@@ -229,7 +229,7 @@ const Goals: React.FC = () => {
               onChange={(e) => handleCheckboxChange(id, e.target.checked)}
             />
           </div>
-        )
+        ),
       )}
     </div>
   );

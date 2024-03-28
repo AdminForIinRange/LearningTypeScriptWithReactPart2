@@ -25,13 +25,11 @@ const router = createBrowserRouter(
       <Route path="Home" element={<Home />} />
       <Route path="/" element={<Goals />} />
       <Route path="GoalCreation" element={<GoalCreation />} />
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 function App() {
-
-
   const dispatch = useDispatch<AppDispatch>();
 
   const { user } = useSelector((state: RootState) => state.auth);
@@ -46,7 +44,6 @@ function App() {
     } else if (!UserTestStorage && user) {
       // If UserTestStorage doesn't exist in localStorage but user is logged in, sign out the user
       dispatch(signOutUser());
-    
     }
   }, [dispatch, user]);
 

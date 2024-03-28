@@ -13,14 +13,14 @@ import GoalsEntryBtn from "../../components/Buttons/GoalsEntryBtn.tsx";
 const GoalCreation: React.FC = () => {
   const navigate = useNavigate();
   const { OnNavbox, CompletedBarArray } = useSelector(
-    (state: RootState) => state.goals
+    (state: RootState) => state.goals,
   );
   const dispatch = useDispatch<AppDispatch>();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [modalValue, setModalValue]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState<string>("");
   const { Navbox } = ModalData[0];
 
@@ -61,7 +61,7 @@ const GoalCreation: React.FC = () => {
                   index={index}
                   title={title}
                 />
-              )
+              ),
             )}
 
             {CompletedBarArray && CompletedBarArray.length > 3 ? (

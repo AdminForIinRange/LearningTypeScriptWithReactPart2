@@ -5,8 +5,6 @@ interface InputFeildProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // ReactNode allows any valid JSX to be passed as children
 }
 
-
-
 interface ModalBTNProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   formComplete: boolean;
@@ -31,8 +29,6 @@ const ModalInputFeild: React.FC<InputFeildProps> = ({ value, onChange }) => {
     </>
   );
 };
-
-
 
 const ModalBTN: React.FC<ModalBTNProps> = ({ onClick, formComplete }) => {
   return (
@@ -65,4 +61,4 @@ const ModalBTN: React.FC<ModalBTNProps> = ({ onClick, formComplete }) => {
   );
 };
 
-export {ModalInputFeild, ModalBTN };
+export { ModalInputFeild, ModalBTN };

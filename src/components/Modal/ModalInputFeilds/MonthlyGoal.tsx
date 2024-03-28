@@ -3,28 +3,31 @@ import { onClose } from "../../../global/index.ts";
 import { Dispatch, SetStateAction, useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { addGoals, CompletedBarArrayCheck } from "../../../features/goals/goalsSlice.tsx";
+import {
+  addGoals,
+  CompletedBarArrayCheck,
+} from "../../../features/goals/goalsSlice.tsx";
 import { AppDispatch } from "../../../store.ts";
 import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [monthlyGoalOne, setMonthlyGoalOne]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
 
   const [monthlyGoalTwo, setMonthlyGoalTwo]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
   const [monthlyGoalThree, setMonthlyGoalThree]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
 
   const [formComplete, setFormComplete]: [
     boolean,
-    Dispatch<SetStateAction<boolean>>
+    Dispatch<SetStateAction<boolean>>,
   ] = useState(true);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,8 +38,7 @@ const MonthlyGoal: React.FC<onClose> = ({ onClose }) => {
 
   return (
     <>
-     
-      <ModalBody w={"100%"} h={"100%"}  mt={"20px"} >
+      <ModalBody w={"100%"} h={"100%"} mt={"20px"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
             <ModalInputFeild

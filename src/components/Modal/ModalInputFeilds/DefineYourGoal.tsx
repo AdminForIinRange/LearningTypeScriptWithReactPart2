@@ -1,32 +1,28 @@
-import {
-  HStack,
-  VStack,
-  Input,
-  
-  ModalBody,
-  FormLabel,
-} from "@chakra-ui/react";
+import { HStack, VStack, Input, ModalBody, FormLabel } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useState } from "react";
 import { onClose } from "../../../global/index.ts";
 import { AppDispatch } from "../../../store.ts";
 import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 import { useDispatch } from "react-redux";
-import { addGoals, CompletedBarArrayCheck} from "../../../features/goals/goalsSlice.tsx";
+import {
+  addGoals,
+  CompletedBarArrayCheck,
+} from "../../../features/goals/goalsSlice.tsx";
 
 const DefineYourGoal: React.FC<onClose> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [goalDescription, setGoalDescription]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
   const [timeEstimate, setTimeEstimate]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
 
   const [formComplete, setFormComplete]: [
     boolean,
-    Dispatch<SetStateAction<boolean>>
+    Dispatch<SetStateAction<boolean>>,
   ] = useState(true);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,8 +34,7 @@ const DefineYourGoal: React.FC<onClose> = ({ onClose }) => {
   };
   return (
     <>
-      
-      <ModalBody w={"100%"} h={"100%"}  mt={"20px"}>
+      <ModalBody w={"100%"} h={"100%"} mt={"20px"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
             <FormLabel fontWeight={400} fontSize={"17px"}>

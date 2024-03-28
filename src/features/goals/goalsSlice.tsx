@@ -32,7 +32,6 @@ interface GoalInterface {
 const initialState: GoalInterface = {
   OnNavbox: "Lets Get Started",
   CompletedBarArray: [],
-
 };
 
 // Define slice
@@ -43,8 +42,6 @@ const goalsSlice = createSlice({
     NavboxCheck: (state, action: PayloadAction<string>) => {
       state.OnNavbox = action.payload;
     },
-    
-    
 
     CompletedBarArrayCheck: (state, action: PayloadAction<string>) => {
       if (state.CompletedBarArray) {
@@ -76,8 +73,10 @@ export const addGoals = createAsyncThunk(
         throw new Error("User ID not found");
       }
 
-      const userDocRef: CollectionReference<DocumentData> = collection(db, 'goals');
-
+      const userDocRef: CollectionReference<DocumentData> = collection(
+        db,
+        "goals",
+      );
 
       // Check if userDocRef exists
       if (userDocRef) {
@@ -85,7 +84,6 @@ export const addGoals = createAsyncThunk(
           ...goals,
           createdAt: serverTimestamp(),
           userId,
-    
         });
       } else {
         throw new Error("User has reached the maximum number of goals");
@@ -94,7 +92,7 @@ export const addGoals = createAsyncThunk(
       console.error("Error adding goals: ", error);
       throw error; // Re-throw the error to be handled by the caller
     }
-  }
+  },
 );
 
 // Export actions

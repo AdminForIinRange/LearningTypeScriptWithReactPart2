@@ -4,30 +4,32 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { AppDispatch , } from "../../../store.ts";
-import { addGoals, CompletedBarArrayCheck} from "../../../features/goals/goalsSlice.tsx";
+import { AppDispatch } from "../../../store.ts";
+import {
+  addGoals,
+  CompletedBarArrayCheck,
+} from "../../../features/goals/goalsSlice.tsx";
 import { ModalInputFeild, ModalBTN } from "./ModalInputFeild.tsx";
 
 const DailyGoal: React.FC<onClose> = ({ onClose }) => {
-
   const dispatch = useDispatch<AppDispatch>();
   const [dailyGoalOne, setDailyGoalOne]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
 
   const [dailyGoalTwo, setDailyGoalTwo]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
   const [dailyGoalThree, setDailyGoalThree]: [
     string,
-    Dispatch<SetStateAction<string>>
+    Dispatch<SetStateAction<string>>,
   ] = useState("");
 
   const [formComplete, setFormComplete]: [
     boolean,
-    Dispatch<SetStateAction<boolean>>
+    Dispatch<SetStateAction<boolean>>,
   ] = useState(true);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,7 +41,6 @@ const DailyGoal: React.FC<onClose> = ({ onClose }) => {
 
   return (
     <>
-      
       <ModalBody w={"100%"} h={"100%"} mt={"20px"}>
         <VStack justify={"start"} align={"left"} w={"100%"} h={"100%"} p={2}>
           <form onSubmit={handleSubmit}>
